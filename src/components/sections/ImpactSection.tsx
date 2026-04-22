@@ -65,14 +65,23 @@ export function ImpactSection() {
           <div className="flex flex-col gap-6">
             {/* Card 1: Geographic context */}
             <Reveal direction="up" delay={0.1}>
-              <div className="bg-[#ede6d8]/50 rounded-lg p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
-                <div className="flex flex-col items-center">
-                  <div className="w-6 h-6 bg-[var(--primary)] rounded-t-full mb-6" />
-                  <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">Upper West <br /> Region, Ghana</h3>
+              <div className="relative aspect-square rounded-lg overflow-hidden group">
+                <Image
+                  src="/images/luri/upper-west.png"
+                  alt="Upper West Region, Ghana"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 p-8 flex flex-col items-center justify-between text-center">
+                  <div className="flex flex-col items-center">
+                    <div className="w-6 h-6 bg-[var(--primary)] rounded-t-full mb-6" />
+                    <h3 className="text-xl font-bold text-white uppercase tracking-tight">Upper West <br /> Region, Ghana</h3>
+                  </div>
+                  <p className="text-white/80 text-sm leading-relaxed max-w-[180px]">
+                    One of Ghana's most underserved areas — where every programme is designed, tested, and delivered on the ground.
+                  </p>
                 </div>
-                <p className="text-stone-600 text-sm leading-relaxed max-w-[180px]">
-                  One of Ghana's most underserved areas — where every programme is designed, tested, and delivered on the ground.
-                </p>
               </div>
             </Reveal>
 
@@ -101,18 +110,22 @@ export function ImpactSection() {
           <div className="flex flex-col gap-6 lg:mt-12">
             {/* Card 2: Climate-Smart Agribusiness */}
             <Reveal direction="up" delay={0.2}>
-              <div className="bg-[#ede6d8]/50 rounded-lg overflow-hidden flex flex-col items-center text-center">
-                <div className="p-8 pb-0">
-                  <div className="w-6 h-6 bg-[var(--accent)] rounded-t-full mb-6 mx-auto" />
-                  <h3 className="text-xl font-bold text-stone-800 mb-2 uppercase tracking-tight">Climate-Smart <br /> Agribusiness</h3>
-                </div>
-                <div className="relative w-full aspect-[3/4] mt-4">
-                  <Image
-                    src="/images/luri/agribusiness.png"
-                    alt="Upper West Region Farming"
-                    fill
-                    className="object-cover"
-                  />
+              <div className="relative aspect-[3/4] rounded-lg overflow-hidden group">
+                <Image
+                  src="/images/luri/agribusiness.png"
+                  alt="Climate-Smart Agribusiness"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 p-8 flex flex-col items-center justify-between text-center">
+                  <div className="flex flex-col items-center">
+                    <div className="w-6 h-6 bg-[var(--accent)] rounded-t-full mb-6" />
+                    <h3 className="text-xl font-bold text-white uppercase tracking-tight">Climate-Smart <br /> Agribusiness</h3>
+                  </div>
+                  <p className="text-white/80 text-sm leading-relaxed max-w-[200px]">
+                    Training smallholder farmers in value-addition and market linkages.
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -133,14 +146,23 @@ export function ImpactSection() {
           <div className="flex flex-col gap-6">
             {/* Card 3: Who we serve */}
             <Reveal direction="up" delay={0.3}>
-              <div className="bg-[#ede6d8]/50 rounded-md p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
-                <div className="flex flex-col items-center">
-                  <div className="w-6 h-6 bg-[var(--coral)] rounded-t-full mb-6" />
-                  <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">Women, Youth <br /> & Farmers</h3>
+              <div className="relative aspect-square rounded-md overflow-hidden group">
+                <Image
+                  src="/images/hero-luri.png"
+                  alt="Women, Youth & Farmers"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 p-8 flex flex-col items-center justify-between text-center">
+                  <div className="flex flex-col items-center">
+                    <div className="w-6 h-6 bg-[var(--coral)] rounded-t-full mb-6" />
+                    <h3 className="text-xl font-bold text-white uppercase tracking-tight">Women, Youth <br /> & Farmers</h3>
+                  </div>
+                  <p className="text-white/80 text-sm leading-relaxed max-w-[180px]">
+                    60% of all beneficiaries are women. Programmes close gender and economic gaps simultaneously.
+                  </p>
                 </div>
-                <p className="text-stone-600 text-sm leading-relaxed max-w-[180px]">
-                  60% of all beneficiaries are women. Programmes close gender and economic gaps simultaneously.
-                </p>
               </div>
             </Reveal>
 
