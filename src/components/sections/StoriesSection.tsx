@@ -32,6 +32,7 @@ export function StoriesSection() {
             </Reveal>
             <SplitHeading
               as="h2"
+              highlightWords={["Real people."]}
               text="Real people. Real outcomes."
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-2xl"
             />

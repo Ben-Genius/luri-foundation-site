@@ -36,7 +36,7 @@ export function ImpactSection() {
 
   return (
     <section className="section-pad bg-white">
-      <div className="container-luri">
+      <div className="max-w-[95%] mx-auto">
 
         {/* ── Section Header ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 sm:gap-10 mb-12 sm:mb-16">
@@ -56,6 +56,7 @@ export function ImpactSection() {
             <SplitHeading
               as="h2"
               text="Proof over promises."
+              highlightWords={["promises"]}
               className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--primary)] tracking-tight leading-tight mb-4 sm:mb-5"
             />
 

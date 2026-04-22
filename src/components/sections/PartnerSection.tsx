@@ -95,7 +95,7 @@ export function PartnerSection() {
         <Activity size={40} strokeWidth={2} />
       </div>
 
-      <div className="container-luri relative z-10">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid gap-12 sm:gap-16 lg:gap-24 items-center lg:grid-cols-[1fr_460px]">
 
           {/* ── Left: Text ── */}
@@ -113,6 +113,7 @@ export function PartnerSection() {
             <SplitHeading
               as="h2"
               text="Project CURE."
+              highlightWords={["cure"]}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.0] mb-5 sm:mb-6 text-[var(--primary)]"
             />
 
@@ -147,7 +148,7 @@ export function PartnerSection() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <RippleButton href="/partners" variant="secondary" size="lg" textColor="white">
+              <RippleButton href="/partners" variant="primary" size="lg" textColor="white">
                 View partner framework
               </RippleButton>
             </Reveal>

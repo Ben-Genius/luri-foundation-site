@@ -90,7 +90,7 @@ export function ModelSection() {
 
   return (
     <section className="section-pad bg-white">
-      <div className="container-luri">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8 mb-14 sm:mb-20">
@@ -106,7 +106,8 @@ export function ModelSection() {
             </Reveal>
             <SplitHeading
               as="h2"
-              text="Five stages. One continuous cycle."
+              text="Five Stages. One Continuous Cycle."
+              highlightWords={["Five", "One"]}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--ink)] max-w-2xl"
             />
           </div>

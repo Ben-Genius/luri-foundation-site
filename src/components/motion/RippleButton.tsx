@@ -20,7 +20,7 @@ interface RippleButtonProps {
   label?: string;
   children?: ReactNode;
   href?: string;
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLElement>) => void;
   variant?: "primary" | "secondary" | "ghost" | "coral";
   size?: "sm" | "md" | "lg";
   className?: string;
@@ -81,7 +81,10 @@ export function RippleButton({
 
   if (href) {
     return (
-      <Link href={href} className={base} style={colorStyle} onClick={addRipple}>
+      <Link href={href} className={base} style={colorStyle} onClick={(e) => {
+        addRipple(e);
+        onClick?.(e);
+      }}>
         <RippleLayer
           ripples={ripples}
           onDone={(id) => setRipples((r) => r.filter((r) => r.id !== id))}
@@ -101,7 +104,7 @@ export function RippleButton({
       style={colorStyle}
       onClick={(e) => {
         addRipple(e);
-        onClick?.();
+        onClick?.(e);
       }}
     >
       <RippleLayer

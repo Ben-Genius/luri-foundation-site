@@ -14,6 +14,10 @@ interface SplitHeadingProps {
   triggerStart?: string;
   /** When true, animate immediately instead of on scroll */
   immediate?: boolean;
+  /** Words to apply highlight styling to */
+  highlightWords?: string[];
+  /** Custom class for highlighted words. Defaults to accent color. */
+  highlightClass?: string;
 }
 
 export function SplitHeading({
@@ -23,6 +27,8 @@ export function SplitHeading({
   delay = 0,
   triggerStart = "top 88%",
   immediate = false,
+  highlightWords = [],
+  highlightClass = "text-[var(--accent)]",
 }: SplitHeadingProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -61,12 +67,26 @@ export function SplitHeading({
 
   return (
     <Tag ref={ref as React.RefObject<HTMLHeadingElement>} className={className} aria-label={text}>
-      {text.split(" ").map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden" style={{ verticalAlign: "bottom" }}>
-          <span className="sh-word inline-block">{word}</span>
-          {i < text.split(" ").length - 1 && " "}
-        </span>
-      ))}
+      {text.split(" ").map((word, i) => {
+        // Clean word of punctuation for matching
+        const cleanWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+        const isHighlighted = highlightWords.some((h) =>
+          cleanWord.toLowerCase().includes(h.toLowerCase())
+        );
+
+        return (
+          <span
+            key={i}
+            className="inline-block overflow-hidden"
+            style={{ verticalAlign: "bottom" }}
+          >
+            <span className={`sh-word inline-block ${isHighlighted ? highlightClass : ""}`}>
+              {word}
+            </span>
+            {i < text.split(" ").length - 1 && " "}
+          </span>
+        );
+      })}
     </Tag>
   );
 }

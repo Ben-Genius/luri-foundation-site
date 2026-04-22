@@ -7,8 +7,8 @@ import { ArrowRight, MessageSquare, SquareTerminal, CableCarIcon, TreeDeciduousI
 export function NewsletterSection() {
   return (
     <section className="section-pad bg-white">
-      <div className="container-luri">
-        <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[var(--primary)] p-6 sm:p-10 md:p-16 lg:p-20">
+      <div className="container mx-auto">
+        <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-lg bg-[var(--primary)] p-6 sm:p-10 md:p-16 lg:p-20">
           {/* Decorative blobs */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="absolute -top-20 -left-20 h-48 w-48 sm:h-64 sm:w-64 md:h-96 md:w-96 rounded-full bg-white opacity-10 blur-3xl animate-pulse" />
@@ -50,8 +50,8 @@ export function NewsletterSection() {
 
               <Reveal direction="up" delay={0.2}>
                 <h2 className="mb-4 sm:mb-6 text-[clamp(1.75rem,5vw,4rem)] font-bold leading-[1.1] text-white tracking-tight">
-                  <span className="italic font-medium opacity-90">Your partnership</span> <br />
-                  changes everything.
+                  <span className="font-medium opacity-90 ">Your partnership</span> <br />
+                  changes <span className="font-medium opacity-90 underline">everything.</span>
                 </h2>
               </Reveal>
 
@@ -65,14 +65,14 @@ export function NewsletterSection() {
 
             {/* Right Card */}
             <Reveal direction="right" delay={0.2} distance={60} className="w-full">
-              <div className="rounded-xl sm:rounded-2xl bg-white p-5 sm:p-8 md:p-10 lg:p-12 shadow-2xl shadow-black/10">
+              <div className="rounded-xl sm:rounded-2xl lg:rounded-md bg-white p-5 sm:p-8 md:p-10 lg:p-12 shadow-2xl shadow-black/10">
                 <h3 className="mb-5 sm:mb-6 md:mb-8 text-lg sm:text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
                   Partner with LURI
                 </h3>
 
                 <div className="space-y-5 sm:space-y-6 md:space-y-8 mb-7 sm:mb-8 md:mb-10">
                   <div className="flex gap-3 sm:gap-4 md:gap-5">
-                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-lg bg-[var(--primary-light)] text-[var(--primary)] border border-[var(--primary)]/10 shadow-sm">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-sm sm:rounded-md bg-[var(--primary-light)] text-[var(--primary)] border border-[var(--primary)]/10 shadow-sm">
                       <SquareTerminal className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                     </div>
                     <div>
@@ -84,7 +84,7 @@ export function NewsletterSection() {
                   </div>
 
                   <div className="flex gap-3 sm:gap-4 md:gap-5">
-                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-[var(--accent)] border border-amber-100 shadow-sm">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-sm sm:rounded-md bg-amber-50 text-[var(--accent)] border border-amber-100 shadow-sm">
                       <CableCarIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                     </div>
                     <div>
@@ -96,7 +96,7 @@ export function NewsletterSection() {
                   </div>
 
                   <div className="flex gap-3 sm:gap-4 md:gap-5">
-                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-sm sm:rounded-md bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
                       <TreeDeciduousIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                     </div>
                     <div>
@@ -112,14 +112,14 @@ export function NewsletterSection() {
                   <RippleButton
                     textColor="white"
                     href="/get-involved/donate"
-                    className="flex-1 rounded-xl py-3.5 sm:py-4 md:py-5 text-sm font-bold text-white shadow-xl shadow-[var(--primary)]/10 flex items-center justify-center gap-2"
+                    className="flex-1 rounded-xl sm:rounded-xl lg:rounded-md py-3.5 sm:py-4 md:py-5 text-sm font-bold text-white shadow-xl shadow-[var(--primary)]/10 flex items-center justify-center gap-2"
                   >
                     Donate to the mission <ArrowRight className="h-4 w-4" />
                   </RippleButton>
                   <RippleButton
                     textColor="white"
                     href="https://wa.me/233551337074?text=Hi%2C%20I%27m%20interested%20in%20partnering%20with%20LURI"
-                    className="flex-1 rounded-xl py-3.5 sm:py-4 md:py-5 text-sm font-bold text-white bg-[var(--primary)] shadow-xl shadow-[var(--primary)]/10 flex items-center justify-center gap-2"
+                    className="flex-1 rounded-xl lg:rounded-md py-3.5 sm:py-4 md:py-5 text-sm font-bold text-white bg-[var(--primary)] shadow-xl shadow-[var(--primary)]/10 flex items-center justify-center gap-2"
                   >
                     Join our community <MessageSquare className="h-4 w-4" />
                   </RippleButton>
