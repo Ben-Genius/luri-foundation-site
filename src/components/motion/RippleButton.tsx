@@ -29,7 +29,7 @@ interface RippleButtonProps {
 }
 
 const variantStyles: Record<NonNullable<RippleButtonProps["variant"]>, string> = {
-  primary: "bg-amber-400 text-ink hover:bg-amber-300",
+  primary: "bg-amber-400 text-white hover:bg-amber-300",
   secondary: "bg-[var(--primary)] text-white hover:bg-[var(--primary-dark)]",
   ghost: "border-2 border-white/40 text-white hover:border-white/80",
   coral: "bg-[var(--coral)] text-white hover:bg-coral-400",
@@ -64,7 +64,7 @@ export function RippleButton({
 
   const content = label ?? children;
   const base = cn(
-    "relative overflow-hidden rounded-full transition-colors duration-200 inline-flex items-center justify-center gap-2 cursor-pointer select-none",
+    "relative overflow-hidden rounded-lg transition-colors duration-200 inline-flex items-center justify-center gap-2 cursor-pointer select-none",
     variantStyles[variant],
     sizeStyles[size],
     className
@@ -108,7 +108,7 @@ function RippleLayer({ ripples, onDone }: { ripples: Ripple[]; onDone: (id: numb
           exit={{ opacity: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
           onAnimationComplete={() => onDone(r.id)}
-          className="absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white pointer-events-none"
+          className="absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white pointer-events-none"
           style={{ left: 0, top: 0, x: r.x - 10, y: r.y - 10 }}
         />
       ))}

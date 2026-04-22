@@ -2,26 +2,29 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RippleButton } from "@/components/motion/RippleButton";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/", label: "Home", imgUrl: "/images/nav/home.jpg" },
+  { href: "/about", label: "About", imgUrl: "/images/nav/about.avif" },
   {
     href: "/programmes",
     label: "Programmes",
+    imgUrl: "/images/nav/programme.avif",
     sub: [
       { href: "/programmes/healthcare", label: "Healthcare & Sanitation" },
       { href: "/programmes/agribusiness", label: "Agribusiness" },
       { href: "/programmes/stem", label: "STEM Scholarships" },
     ],
   },
-  { href: "/impact", label: "Impact" },
-  { href: "/partners", label: "Partners" },
+  { href: "/impact", label: "Impact", imgUrl: "/images/nav/impact.jpg" },
+  { href: "/partners", label: "Partners", imgUrl: "/images/nav/partners.avif" },
 ];
 
 const footerLinks = [
@@ -38,9 +41,82 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSub, setOpenSub] = useState<string | null>(null);
 
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const previewContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
+
+  useGSAP(
+    () => {
+      if (!menuOpen || !sectionRef.current) return;
+
+      const previewContainer = previewContainerRef.current;
+      if (!previewContainer) return;
+
+      const menuLinkItems = sectionRef.current.querySelectorAll(".menu-link-item");
+
+      let lastHoveredIndex: number | null = null;
+
+      const handleMouseOver = (index: number) => {
+        if (index !== lastHoveredIndex) {
+          const imgContainer = document.createElement("div");
+          imgContainer.classList.add(
+            "temp-image",
+            "absolute",
+            "inset-0",
+            "rotate-[-15deg]",
+            "scale-110",
+            "opacity-0"
+          );
+
+          const img = document.createElement("img");
+          img.src = navLinks[index].imgUrl!;
+          img.alt = "";
+          img.classList.add("w-full", "h-full", "object-cover", "rounded-2xl");
+
+          imgContainer.appendChild(img);
+          previewContainer.appendChild(imgContainer);
+
+          gsap.to(imgContainer, {
+            rotate: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power4.out",
+            onComplete: () => {
+              const allImgContainers = previewContainer.querySelectorAll(".temp-image");
+              if (allImgContainers.length > 1) {
+                Array.from(allImgContainers)
+                  .slice(0, -1)
+                  .forEach((container) => {
+                    gsap.to(container, {
+                      opacity: 0,
+                      duration: 0.4,
+                      onComplete: () => container.remove(),
+                    });
+                  });
+              }
+            },
+          });
+
+          lastHoveredIndex = index;
+        }
+      };
+
+      menuLinkItems.forEach((item, index) => {
+        item.addEventListener("mouseenter", () => handleMouseOver(index));
+      });
+
+      return () => {
+        menuLinkItems.forEach((item, index) => {
+          item.removeEventListener("mouseenter", () => handleMouseOver(index));
+        });
+      };
+    },
+    { scope: sectionRef, dependencies: [menuOpen] }
+  );
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -55,11 +131,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
         initial={false}
       >
         {/* Top accent bar */}
-        <div className="h-1.5 w-full bg-[var(--primary)]" />
+        <div className=" w-full bg-[var(--primary)] mt-1" />
         <div className="container-luri flex h-16 items-center justify-between md:h-18">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <img src="/images/logo.png" alt="LURI Logo" className="h-16 w-auto object-contain" />
+          <Link href="/" className="flex items-center gap-2 group pt-4">
+            <img src="/images/logo.png" alt="LURI Logo" className="h-20 w-auto object-contain" />
           </Link>
 
 
@@ -68,7 +144,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <button
               onClick={() => setMenuOpen((v) => !v)}
               aria-label="Toggle menu"
-              className="group flex h-10 w-10 flex-col items-center justify-center gap-1.5 transition-all"
+              className="group flex h-10 w-10 flex-col items-center justify-center gap-1.5 transition-all cursor-pointer"
             >
               <div className="relative h-4 w-6">
                 <motion.span
@@ -108,11 +184,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[60] bg-[var(--primary-light)] overflow-y-auto"
+            ref={sectionRef}
           >
             {/* Overlay Header */}
             <div className="container-luri flex h-16 items-center justify-between md:h-18">
-              <Link href="/" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
-                <img src="/images/logo.png" alt="Logo" className="h-16 w-auto object-contain" />
+              <Link href="/" className="flex items-center gap-3 pt-4" onClick={() => setMenuOpen(false)}>
+                <img src="/images/logo.png" alt="Logo" className="h-20 w-auto object-contain" />
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
@@ -122,38 +199,54 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </button>
             </div>
 
-            {/* Menu Links */}
-            <div className="container-luri pt-12 pb-24">
-              <nav className="flex flex-col gap-6">
+            {/* Menu Links & Preview */}
+            <div className="container-luri pt-12 pb-24 grid lg:grid-cols-2 gap-12 items-center">
+              <nav className="flex flex-col gap-4">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1, duration: 0.5, ease }}
+                    className="menu-link-item"
                   >
                     <Link
                       href={link.href}
                       className="group flex flex-col items-start gap-1"
                       onClick={() => setMenuOpen(false)}
                     >
-                      <span className="text-[clamp(2.5rem,10vw,4.5rem)] font-bold text-[var(--primary)] leading-tight tracking-tight">
-                        <span className="opacity-40">{i + 1}.</span> {link.label}
+                      <span className="text-[clamp(2rem,6vw,4rem)] font-bold text-[var(--primary)] leading-tight tracking-tight hover:italic transition-all">
+                        <span className="opacity-20 mr-2">{String(i + 1).padStart(2, "0")}</span> {link.label}
                       </span>
                     </Link>
                   </motion.div>
                 ))}
               </nav>
 
-              {/* Bottom Buttons - Raygan style */}
-              <div className="mt-20 flex flex-wrap gap-4 border-t border-[var(--primary)]/10 pt-12">
-                <RippleButton href="/programmes" variant="primary" size="lg" className="rounded-full px-8 flex items-center gap-2">
-                  What we do <span className="text-lg">→</span>
-                </RippleButton>
-                <RippleButton href="/get-involved/donate" variant="secondary" size="lg" className="rounded-full px-8 flex items-center gap-2">
-                  Donate now <span className="text-lg">→</span>
-                </RippleButton>
+              {/* Preview Container - Visible on Desktop */}
+              <div className="hidden lg:block relative aspect-[4/3] w-full max-w-xl mx-auto">
+                <div
+                  ref={previewContainerRef}
+                  className="relative w-full h-full overflow-hidden rounded-2xl shadow-2xl bg-[var(--primary)]/5"
+                >
+                  <img
+                    src="/images/nav/default.png"
+                    className="w-full h-full object-cover opacity-40 grayscale"
+                    alt="Menu preview"
+                  />
+                  {/* GSAP will inject dynamic images here */}
+                </div>
               </div>
+            </div>
+
+            {/* Bottom Buttons - Raygan style */}
+            <div className="container-luri mt-20 flex flex-wrap gap-4 border-t border-[var(--primary)]/10 pt-12">
+              <RippleButton href="/programmes" variant="primary" size="lg" className="rounded-full px-8 flex items-center gap-2">
+                What we do <span className="text-lg">→</span>
+              </RippleButton>
+              <RippleButton href="/get-involved/donate" variant="secondary" size="lg" className="rounded-full px-8 flex items-center gap-2">
+                Donate now <span className="text-lg">→</span>
+              </RippleButton>
             </div>
           </motion.div>
         )}

@@ -1,8 +1,8 @@
 "use client";
+import React from "react";
 
 interface MarqueeStripProps {
-  items: string[];
-  separator?: string;
+  items: React.ReactNode[];
   speed?: number;
   className?: string;
   itemClassName?: string;
@@ -10,22 +10,21 @@ interface MarqueeStripProps {
 
 export function MarqueeStrip({
   items,
-  separator = "·",
   className = "",
   itemClassName = "",
 }: MarqueeStripProps) {
-  const repeated = [...items, ...items];
+  const repeated = [...items, ...items, ...items, ...items]; // More repeats for smoother loop
 
   return (
     <div className={`overflow-hidden ${className}`} aria-hidden="true">
       <div className="marquee-track">
         {repeated.map((item, i) => (
-          <span key={i} className={`inline-flex items-center gap-5 px-5 ${itemClassName}`}>
-            <span>{item}</span>
-            <span className="opacity-40">{separator}</span>
-          </span>
+          <div key={i} className={`inline-flex items-center px-4 ${itemClassName}`}>
+            {item}
+          </div>
         ))}
       </div>
     </div>
   );
 }
+

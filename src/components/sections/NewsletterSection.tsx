@@ -2,7 +2,7 @@
 
 import { GSAPReveal as Reveal } from "@/components/motion/GSAPReveal";
 import { RippleButton } from "@/components/motion/RippleButton";
-import { Heart, ShieldCheck, TrendingUp, ArrowRight, Instagram, MessageSquare } from "lucide-react";
+import { Heart, ShieldCheck, TrendingUp, ArrowRight, MessageSquare } from "lucide-react";
 
 export function NewsletterSection() {
   return (
