@@ -36,7 +36,7 @@ export function ImpactSection() {
 
   return (
     <section className="section-pad bg-white">
-      <div className="container-luri">
+      <div className="max-w-[95%] mx-auto">
 
         {/* ── Section Header ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 sm:gap-10 mb-12 sm:mb-16">

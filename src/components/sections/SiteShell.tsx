@@ -254,7 +254,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </AnimatePresence>
 
       {/* ── Main ── */}
-      <main className="flex-1 pt-[67px] md:pt-[75px]">{children}</main>
+      <main className="flex-1 pt-[67px] md:pt-[75px] lg:pt-0">{children}</main>
 
       {/* ── Footer ── */}
       <footer className="border-t border-[var(--primary)]/10 bg-[var(--primary-dark)] text-white">
