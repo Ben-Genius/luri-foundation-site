@@ -145,7 +145,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         initial={false}
       >
         {/* Top accent bar */}
-        <div className="h-[3px] w-full bg-[var(--primary)]" />
+        <div className=" w-full bg-[var(--primary)]" />
         <div className="container-luri flex h-16 items-center justify-between md:h-18">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group pt-2">
@@ -258,8 +258,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
       {/* ── Main ── */}
       <main className="flex-1 pt-[67px] md:pt-[75px] lg:pt-0">{children}</main>
 
+
       {/* ── Footer ── */}
-      <footer className="border-t border-[var(--primary)]/10 bg-[var(--primary-dark)] text-white">
+      <footer className="border-t border-[var(--primary)]/10 bg-[var(--primary-dark)] text-white ">
         <div className="container-luri py-12 md:py-14">
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             {/* Brand */}

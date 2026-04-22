@@ -242,24 +242,7 @@ export default function ProgrammesPage() {
             </Reveal>
           </div>
 
-          {/* Three pillar image row */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-4 h-[200px] sm:h-[300px] lg:h-[380px]">
-            {programmes.map((p, i) => {
-              const Icon = p.icon;
-              return (
-                <Reveal key={p.slug} direction="up" delay={i * 0.1}>
-                  <div className="relative h-full rounded-xl overflow-hidden group cursor-pointer">
-                    <Image src={p.image} alt={p.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
-                      <Icon className="h-5 w-5 mb-2 text-white/70" />
-                      <p className="font-bold text-white text-xs sm:text-sm leading-snug">{p.label}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+
         </div>
       </section>
 
@@ -308,7 +291,7 @@ export default function ProgrammesPage() {
       {/* ══ PRINCIPLES ══ */}
       <ScrollThemeSection theme="#003624">
         <section className="section-pad text-white" style={{ backgroundColor: "#003624" }}>
-          <div className="max-w-[95%] mx-auto">
+          <div className="max-w-[90%] mx-auto">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
               <div>
                 <Reveal>
@@ -323,7 +306,7 @@ export default function ProgrammesPage() {
                 <SplitHeading
                   as="h2"
                   text="Non-cash. Community-owned. Employer-linked."
-                  highlightWords={["Non-cash.", "Community-owned.", "Employer-linked."]}
+                  highlightWords={["Non-cash.", "Community-owned.", "Employer-linked"]}
                   className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white max-w-2xl"
                 />
               </div>
