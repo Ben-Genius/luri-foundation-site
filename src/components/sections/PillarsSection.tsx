@@ -7,6 +7,7 @@ import { GSAPReveal as Reveal } from "@/components/motion/GSAPReveal";
 import { ScrollThemeSection } from "@/components/motion/ScrollThemeSection";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
+import { RippleButton } from "../motion/RippleButton";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -446,7 +447,7 @@ function PillarsInteractive() {
 
 export function PillarsSection() {
   return (
-    <ScrollThemeSection theme="#f0ebe0">
+    <ScrollThemeSection theme="#fffff">
       <div className="py-12 md:py-24 px-4 md:px-6 lg:px-8">
         {/* Outer rounded container */}
         {/* ── Two-column header ── */}
@@ -528,15 +529,16 @@ export function PillarsSection() {
                 <p className="text-[var(--ink-600)] text-sm font-medium max-w-xs text-center sm:text-left leading-relaxed">
                   Explore all our programmes and discover how you can get involved.
                 </p>
-                <Link
+                <RippleButton
                   href="/programmes"
-                  className="group inline-flex items-center gap-3 bg-[var(--primary)] text-white pl-2 pr-7 py-2 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-[var(--primary-dark)] transition-colors flex-shrink-0"
+                  textColor="white"
+                  className="group inline-flex items-center gap-3 bg-[var(--primary)] text-white pl-2 pr-7 py-2 rounded-md font-bold text-sm uppercase tracking-wider hover:bg-[var(--primary-dark)] transition-colors flex-shrink-0"
                 >
-                  <span className="h-9 w-9 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <ArrowRight className="h-4 w-4" />
+                  <span className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <ArrowRight className="h-4 w-4 text-white" />
                   </span>
                   All Programmes
-                </Link>
+                </RippleButton>
               </div>
             </Reveal>
           </div>

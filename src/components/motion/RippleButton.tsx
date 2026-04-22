@@ -24,10 +24,14 @@ interface RippleButtonProps {
   variant?: "primary" | "secondary" | "ghost" | "coral";
   size?: "sm" | "md" | "lg";
   className?: string;
+  /** Override the text colour for any variant. Accepts any valid CSS colour value,
+   *  e.g. textColor="#0a5c60" or textColor="var(--ink)" */
+  textColor?: string;
   type?: "button" | "submit";
   disabled?: boolean;
 }
 
+// Variant styles no longer hardcode text colours — textColor prop handles overrides.
 const variantStyles: Record<NonNullable<RippleButtonProps["variant"]>, string> = {
   primary: "bg-amber-400 text-white hover:bg-amber-300",
   secondary: "bg-[var(--primary)] text-white hover:bg-[var(--primary-dark)]",
@@ -49,6 +53,7 @@ export function RippleButton({
   variant = "primary",
   size = "md",
   className = "",
+  textColor,
   type = "button",
   disabled = false,
 }: RippleButtonProps) {
@@ -63,6 +68,7 @@ export function RippleButton({
   }
 
   const content = label ?? children;
+
   const base = cn(
     "relative overflow-hidden rounded-lg transition-colors duration-200 inline-flex items-center justify-center gap-2 cursor-pointer select-none",
     variantStyles[variant],
@@ -70,11 +76,17 @@ export function RippleButton({
     className
   );
 
+  // Applied via style so it always wins over Tailwind's colour utilities.
+  const colorStyle = textColor ? { color: textColor } : undefined;
+
   if (href) {
     return (
-      <Link href={href} className={base} onClick={addRipple}>
-        <RippleLayer ripples={ripples} onDone={(id) => setRipples((r) => r.filter((r) => r.id !== id))} />
-        <span className="relative z-10">{content}</span>
+      <Link href={href} className={base} style={colorStyle} onClick={addRipple}>
+        <RippleLayer
+          ripples={ripples}
+          onDone={(id) => setRipples((r) => r.filter((r) => r.id !== id))}
+        />
+        <span className="relative z-10 flex items-center justify-center gap-2">{content}</span>
       </Link>
     );
   }
@@ -86,18 +98,28 @@ export function RippleButton({
       whileHover={{ scale: disabled ? 1 : 1.03 }}
       whileTap={{ scale: disabled ? 1 : 0.97 }}
       className={base}
+      style={colorStyle}
       onClick={(e) => {
         addRipple(e);
         onClick?.();
       }}
     >
-      <RippleLayer ripples={ripples} onDone={(id) => setRipples((r) => r.filter((r) => r.id !== id))} />
-      <span className="relative z-10">{content}</span>
+      <RippleLayer
+        ripples={ripples}
+        onDone={(id) => setRipples((r) => r.filter((r) => r.id !== id))}
+      />
+      <span className="relative z-10 flex items-center justify-center gap-2">{content}</span>
     </motion.button>
   );
 }
 
-function RippleLayer({ ripples, onDone }: { ripples: Ripple[]; onDone: (id: number) => void }) {
+function RippleLayer({
+  ripples,
+  onDone,
+}: {
+  ripples: Ripple[];
+  onDone: (id: number) => void;
+}) {
   return (
     <AnimatePresence>
       {ripples.map((r) => (

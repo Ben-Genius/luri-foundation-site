@@ -65,7 +65,7 @@ export function ImpactSection() {
           <div className="flex flex-col gap-6">
             {/* Card 1: Geographic context */}
             <Reveal direction="up" delay={0.1}>
-              <div className="bg-[#ede6d8]/50 rounded-[2.5rem] p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
+              <div className="bg-[#ede6d8]/50 rounded-lg p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
                 <div className="flex flex-col items-center">
                   <div className="w-6 h-6 bg-[var(--primary)] rounded-t-full mb-6" />
                   <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">Upper West <br /> Region, Ghana</h3>
@@ -78,7 +78,7 @@ export function ImpactSection() {
 
             {/* Card 4: Kulfuo Field Operations */}
             <Reveal direction="up" delay={0.4}>
-              <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden group">
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
                 <Image
                   src="/images/luri/operations.png"
                   alt="LURI Field Operations"
@@ -101,7 +101,7 @@ export function ImpactSection() {
           <div className="flex flex-col gap-6 lg:mt-12">
             {/* Card 2: Climate-Smart Agribusiness */}
             <Reveal direction="up" delay={0.2}>
-              <div className="bg-[#ede6d8]/50 rounded-[2.5rem] overflow-hidden flex flex-col items-center text-center">
+              <div className="bg-[#ede6d8]/50 rounded-lg overflow-hidden flex flex-col items-center text-center">
                 <div className="p-8 pb-0">
                   <div className="w-6 h-6 bg-[var(--accent)] rounded-t-full mb-6 mx-auto" />
                   <h3 className="text-xl font-bold text-stone-800 mb-2 uppercase tracking-tight">Climate-Smart <br /> Agribusiness</h3>
@@ -119,7 +119,7 @@ export function ImpactSection() {
 
             {/* Card 5: Zero Cash Transfers */}
             <Reveal direction="up" delay={0.5}>
-              <div className="bg-[var(--primary)] rounded-[2.5rem] p-10 flex flex-col items-center text-center text-white">
+              <div className="bg-[var(--primary)] rounded-lg p-10 flex flex-col items-center text-center text-white">
                 <div className="w-6 h-6 bg-[var(--accent)] rounded-t-full mb-6" />
                 <h3 className="text-xl font-bold mb-4 uppercase tracking-tight">Zero Cash Transfers</h3>
                 <p className="text-white/70 text-sm leading-relaxed max-w-xs">
@@ -133,7 +133,7 @@ export function ImpactSection() {
           <div className="flex flex-col gap-6">
             {/* Card 3: Who we serve */}
             <Reveal direction="up" delay={0.3}>
-              <div className="bg-[#ede6d8]/50 rounded-[2.5rem] p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
+              <div className="bg-[#ede6d8]/50 rounded-md p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
                 <div className="flex flex-col items-center">
                   <div className="w-6 h-6 bg-[var(--coral)] rounded-t-full mb-6" />
                   <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">Women, Youth <br /> & Farmers</h3>
@@ -146,7 +146,7 @@ export function ImpactSection() {
 
             {/* Card 6: Independently Verified */}
             <Reveal direction="up" delay={0.6}>
-              <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden group">
+              <div className="relative aspect-[4/3] rounded-md overflow-hidden group">
                 <Image
                   src="/images/luri/verified.png"
                   alt="Verified Impact"

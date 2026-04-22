@@ -6,29 +6,43 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ScrollThemeContainerProps {
+interface ScrollThemeSectionProps {
   children: ReactNode;
-  theme: string; // CSS color string or class
+  theme: string;
+  defaultBg?: string;
 }
 
-export function ScrollThemeSection({ children, theme }: ScrollThemeContainerProps) {
+export function ScrollThemeSection({
+  children,
+  theme,
+  defaultBg = "#ffffff",
+}: ScrollThemeSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
 
+    const setBodyBg = (color: string) => {
+      document.body.style.backgroundColor = color;
+    };
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: ref.current,
-        start: "top 50%",
-        end: "bottom 50%",
-        onEnter: () => gsap.to("body", { backgroundColor: theme, duration: 0.6 }),
-        onEnterBack: () => gsap.to("body", { backgroundColor: theme, duration: 0.6 }),
+        start: "top 60%",
+        end: "bottom 40%",
+        onEnter: () => setBodyBg(theme),
+        onEnterBack: () => setBodyBg(theme),
+        onLeave: () => setBodyBg(defaultBg),
+        onLeaveBack: () => setBodyBg(defaultBg),
       });
     }, ref);
 
-    return () => ctx.revert();
-  }, [theme]);
+    return () => {
+      ctx.revert();
+      setBodyBg(defaultBg);
+    };
+  }, [theme, defaultBg]);
 
-  return <section ref={ref}>{children}</section>;
+  return <div ref={ref}>{children}</div>;
 }

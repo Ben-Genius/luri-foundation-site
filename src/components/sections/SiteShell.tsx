@@ -132,7 +132,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       >
         {/* Top accent bar */}
         <div className=" w-full bg-[var(--primary)] mt-1" />
-        <div className="container-luri flex h-16 items-center justify-between md:h-18">
+        <div className="container-luri flex h-16 items-center justify-between md:h-18 ">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group pt-4">
             <img src="/images/logo.png" alt="LURI Logo" className="h-20 w-auto object-contain" />
@@ -241,10 +241,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
             {/* Bottom Buttons - Raygan style */}
             <div className="container-luri mt-20 flex flex-wrap gap-4 border-t border-[var(--primary)]/10 pt-12">
-              <RippleButton href="/programmes" variant="primary" size="lg" className="rounded-full px-8 flex items-center gap-2">
+              <RippleButton href="/programmes" variant="primary" textColor="white" size="lg" className="rounded-lg px-8 flex items-center gap-2">
                 What we do <span className="text-lg">→</span>
               </RippleButton>
-              <RippleButton href="/get-involved/donate" variant="secondary" size="lg" className="rounded-full px-8 flex items-center gap-2">
+              <RippleButton href="/get-involved/donate" variant="secondary" textColor="white" size="lg" className="rounded-lg px-8 flex items-center gap-2">
                 Donate now <span className="text-lg">→</span>
               </RippleButton>
             </div>
@@ -262,14 +262,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="grid gap-10 md:grid-cols-4">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="/images/logo.png" alt="LURI" className="h-8 w-8 brightness-0 invert" />
-                <p
-                  className="text-xl font-bold tracking-tight"
-                  style={{ fontFamily: "var(--font-display), system-ui, sans-serif" }}
-                >
-                  LURI Foundation
-                </p>
+              <div className="mb-6">
+                <img src="/images/logo.png" alt="LURI Foundation" className="h-24 w-auto " />
               </div>
               <p className="mt-1 text-xs font-semibold tracking-widest uppercase text-white/40">
                 People · Partnership · Purpose
@@ -304,11 +298,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="rounded-xl bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--accent)] transition-colors"
+                  className="rounded-lg bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--accent)] transition-colors"
                 />
                 <button
                   type="submit"
-                  className="rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-[var(--ink)] hover:bg-amber-300 transition-colors"
+                  className="rounded-lg bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-[var(--ink)] hover:bg-amber-300 transition-colors"
                 >
                   Subscribe
                 </button>

@@ -2,13 +2,13 @@
 
 import { GSAPReveal as Reveal } from "@/components/motion/GSAPReveal";
 import { RippleButton } from "@/components/motion/RippleButton";
-import { Heart, ShieldCheck, TrendingUp, ArrowRight, MessageSquare } from "lucide-react";
+import { Heart, ShieldCheck, TrendingUp, ArrowRight, MessageSquare, SquareTerminal, CableCarIcon, TreeDeciduousIcon } from "lucide-react";
 
 export function NewsletterSection() {
   return (
     <section className="section-pad bg-white">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10">
-        <div className="relative overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-[var(--primary)] p-6 sm:p-10 md:p-16 lg:p-20">
+      <div className="container mx-auto">
+        <div className="relative overflow-hidden rounded-lg md:rounded-lg bg-[var(--primary)] p-6 sm:p-10 md:p-16 lg:p-20">
           {/* Decorative background blobs */}
           <div className="absolute inset-0 pointer-events-none opacity-20">
             <div className="absolute -top-20 -left-20 h-64 w-64 sm:h-96 sm:w-96 rounded-full bg-white blur-3xl animate-pulse" />
@@ -30,14 +30,14 @@ export function NewsletterSection() {
               <Reveal direction="up" delay={0.1}>
                 <div className="mb-6 sm:mb-8 flex -space-x-3 overflow-hidden">
                   {[1, 2, 3, 4, 5, 6].map((i) => (
-                    <div 
-                      key={i} 
+                    <div
+                      key={i}
                       className="inline-block h-10 w-10 sm:h-12 sm:w-12 rounded-full border-2 border-[var(--primary)] bg-white overflow-hidden shadow-lg"
                     >
-                      <img 
-                        src={`https://i.pravatar.cc/150?u=luri-cta-${i}`} 
-                        alt="Supporter" 
-                        className="h-full w-full object-cover" 
+                      <img
+                        src={`https://i.pravatar.cc/150?u=luri-cta-${i}`}
+                        alt="Supporter"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                   ))}
@@ -56,7 +56,7 @@ export function NewsletterSection() {
 
               <Reveal direction="up" delay={0.3}>
                 <p className="max-w-md text-base sm:text-lg text-white/85 leading-relaxed font-medium mb-2">
-                  We invite you to co-author the next chapter of sustainable livelihoods in Ghana. 
+                  We invite you to co-author the next chapter of sustainable livelihoods in Ghana.
                   Join 1,000+ strategic partners making a measurable difference.
                 </p>
               </Reveal>
@@ -64,7 +64,7 @@ export function NewsletterSection() {
 
             {/* Right Card (CTA Card) */}
             <Reveal direction="right" delay={0.2} distance={80} className="w-full">
-              <div className="rounded-[1.5rem] sm:rounded-[2.5rem] bg-white p-6 sm:p-8 md:p-12 shadow-2xl shadow-black/10">
+              <div className="rounded-md  bg-white p-6 sm:p-8 md:p-12 shadow-2xl shadow-black/10">
                 <h3 className="mb-6 sm:mb-8 text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
                   Partner with LURI
                 </h3>
@@ -72,8 +72,8 @@ export function NewsletterSection() {
                 <div className="space-y-6 sm:space-y-8 mb-8 sm:mb-10">
                   {/* List Item 1 */}
                   <div className="flex gap-4 sm:gap-5">
-                    <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-[var(--primary-light)] text-[var(--primary)] border border-[var(--primary)]/10 shadow-sm">
-                      <Heart className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-sm sm:rounded-md bg-[var(--primary-light)] text-[var(--primary)] border border-[var(--primary)]/10 shadow-sm">
+                      <SquareTerminal className="h-5 w-5 sm:h-6 sm:w-6" />
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-base sm:text-lg">Direct Impact</h4>
@@ -85,8 +85,8 @@ export function NewsletterSection() {
 
                   {/* List Item 2 */}
                   <div className="flex gap-4 sm:gap-5">
-                    <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-amber-50 text-[var(--accent)] border border-amber-100 shadow-sm">
-                      <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-sm sm:rounded-md bg-amber-50 text-[var(--accent)] border border-amber-100 shadow-sm">
+                      <CableCarIcon className="h-5 w-5 sm:h-6 sm:w-6" />
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-base sm:text-lg">Transparency</h4>
@@ -98,8 +98,8 @@ export function NewsletterSection() {
 
                   {/* List Item 3 */}
                   <div className="flex gap-4 sm:gap-5">
-                    <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
-                      <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-sm sm:rounded-md bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
+                      <TreeDeciduousIcon className="h-5 w-5 sm:h-6 sm:w-6" />
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-base sm:text-lg">Sustainability</h4>
@@ -111,15 +111,17 @@ export function NewsletterSection() {
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-                  <RippleButton 
+                  <RippleButton
+                    textColor="white"
                     href="/get-involved/donate"
-                    className="flex-1 rounded-xl sm:rounded-2xl bg-[var(--primary)] py-4 sm:py-5 text-sm font-bold text-white flex items-center justify-center gap-2 hover:bg-[var(--primary-dark)] transition-all shadow-xl shadow-[var(--primary)]/10"
+                    className="flex-1 rounded-md py-4 sm:py-5 text-sm font-bold text-white shadow-xl shadow-[var(--primary)]/10"
                   >
                     Donate to the mission <ArrowRight className="h-4 w-4" />
                   </RippleButton>
-                  <RippleButton 
-                    href="https://whatsapp.com"
-                    className="flex-1 rounded-xl sm:rounded-2xl bg-white border-2 border-gray-100 py-4 sm:py-5 text-sm font-bold text-gray-900 flex items-center justify-center gap-2 hover:bg-gray-50 transition-all"
+                  <RippleButton
+                    textColor="white"
+                    href="https://wa.me/233551337074?text=Hi%2C%20I%27m%20interested%20in%20partnering%20with%20LURI"
+                    className="flex-1 rounded-md py-4 sm:py-5 text-sm font-bold text-white bg-[var(--primary)] shadow-xl shadow-[var(--primary)]/10"
                   >
                     Join our community <MessageSquare className="h-4 w-4" />
                   </RippleButton>

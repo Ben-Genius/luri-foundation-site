@@ -19,7 +19,7 @@ export function HomeHero() {
             transition={{ duration: 1.2, ease }}
             className="h-full w-full overflow-hidden rounded-[40%_60%_30%_70%_/_60%_30%_70%_40%]"
           >
-            <img src="/images/pillar-healthcare.png" alt="" className="h-full w-full object-cover opacity-60" />
+            <img src="/images/pillar-healthcare.png" alt="" className="h-full w-full object-cover opacity-80" />
           </motion.div>
         </GSAPParallax>
 
@@ -29,8 +29,10 @@ export function HomeHero() {
             initial={{ opacity: 0, scale: 0.8, x: 100 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1.4, ease, delay: 0.1 }}
-            className="h-full w-full bg-[#a7f3d0] opacity-40 rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%]"
-          />
+            className="h-full w-full overflow-hidden rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%]"
+          >
+            <img src="/images/nav/impact.jpg" alt="" className="h-full w-full object-cover opacity-80" />
+          </motion.div>
         </GSAPParallax>
 
         {/* Left Mid Blob */}
@@ -41,7 +43,7 @@ export function HomeHero() {
             transition={{ duration: 1.6, ease, delay: 0.2 }}
             className="h-full w-full overflow-hidden rounded-[70%_30%_50%_50%_/_30%_30%_70%_70%]"
           >
-            <img src="/images/pillar-agribusiness.png" alt="" className="h-full w-full object-cover opacity-50" />
+            <img src="/images/pillar-agribusiness.png" alt="" className="h-full w-full object-cover opacity-80" />
           </motion.div>
         </GSAPParallax>
 
@@ -53,12 +55,12 @@ export function HomeHero() {
             transition={{ duration: 1.8, ease, delay: 0.3 }}
             className="h-full w-full overflow-hidden rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%]"
           >
-            <img src="/images/pillar-stem.png" alt="" className="h-full w-full object-cover opacity-60" />
+            <img src="/images/pillar-stem.png" alt="" className="h-full w-full object-cover opacity-85" />
           </motion.div>
         </GSAPParallax>
 
         {/* Floating Accent Blobs */}
-        <GSAPParallax speed={1.5} className="absolute top-1/4 right-[10%] h-32 w-32 bg-[var(--accent)] opacity-20 rounded-full blur-3xl" />
+        <GSAPParallax speed={1.5} className="absolute top-1/4 right-[10%] h-32 w-32 bg-[var(--accent)] opacity-30 rounded-full blur-3xl" />
         <GSAPParallax speed={0.5} className="absolute bottom-1/4 left-[10%] h-48 w-48 bg-emerald-400 opacity-10 rounded-full blur-3xl" />
       </div>
 
@@ -81,7 +83,7 @@ export function HomeHero() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <RippleButton href="/get-involved/donate" variant="primary" size="lg" className="rounded-lg text-white px-10 shadow-xl shadow-black/10">
+            <RippleButton href="/get-involved/donate" variant="primary" textColor="white" size="lg" className="rounded-lg text-white px-10 shadow-xl shadow-black/10">
               Create a free profile
             </RippleButton>
           </div>

@@ -58,13 +58,14 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: #ffffff;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.7s ease;
 }
 
 h1,
@@ -232,6 +233,22 @@ video {
   to {
     transform: translateX(-50%);
   }
+}
+
+/* ─── Story image strip ─── */
+.strip-track {
+  display: flex;
+  width: max-content;
+  animation: strip-run 36s linear infinite;
+}
+
+.strip-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes strip-run {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* ─── Hover underline link ─── */
