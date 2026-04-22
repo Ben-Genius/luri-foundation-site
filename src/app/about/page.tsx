@@ -109,7 +109,7 @@ export default function AboutPage() {
           1. HERO — image grid (About3 style, homepage polish)
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="pt-28 sm:pt-36 pb-16 bg-white">
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[90%] mx-auto">
 
           {/* Header */}
           <div className="mb-10 sm:mb-14 grid gap-6 md:grid-cols-2 md:items-end">
@@ -220,7 +220,7 @@ export default function AboutPage() {
           2. ACHIEVEMENT NUMBERS — dark card with real stats
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 bg-[#faf9f6]">
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[90%] mx-auto">
           <Reveal>
             <div
               className="rounded-2xl p-10 md:p-16 relative overflow-hidden"
@@ -270,7 +270,7 @@ export default function AboutPage() {
           3. VISION & MISSION — dark editorial split
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="section-pad" style={{ backgroundColor: "#020d08" }}>
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[90%] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 sm:mb-14">
             <div>
               <Reveal>
@@ -352,7 +352,7 @@ export default function AboutPage() {
           className="section-pad text-white overflow-hidden relative"
           style={{ backgroundColor: "#005035" }}
         >
-          <div className="max-w-[95%] mx-auto">
+          <div className="max-w-[90%] mx-auto">
             <Reveal>
               <div
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-white/70 text-[0.62rem] font-bold uppercase tracking-widest mb-5 sm:mb-6"
@@ -417,7 +417,7 @@ export default function AboutPage() {
           5. FOUNDING STORY — image masonry + editorial prose
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="section-pad bg-white">
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[90%] mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8 mb-12 sm:mb-16">
             <div>
               <Reveal>
