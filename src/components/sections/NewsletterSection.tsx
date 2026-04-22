@@ -95,7 +95,7 @@ export function NewsletterSection() {
                     <div>
                       <h4 className="font-bold text-gray-900 text-base sm:text-lg">Sustainability</h4>
                       <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-                        We build systems that outlast project cycles and create genuine generational change.
+                        Trained community members reinvest their skills and income into the next cohort — your contribution compounds over time.
                       </p>
                     </div>
                   </div>

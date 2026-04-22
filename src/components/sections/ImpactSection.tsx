@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export function ImpactSection() {
   return (
-    <section className="section-pad bg-[#faf9f6]">
-      <div className="container-luri">
+    <section className="section-pad bg-white">
+      <div className="max-w-[95%] mx-auto">
         <Reveal>
           <h2 className="display-heading text-center mb-16 max-w-4xl mx-auto">
             A modern framework for <br className="hidden md:block" /> measurable human impact
@@ -15,21 +15,16 @@ export function ImpactSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Column 1 */}
           <div className="flex flex-col gap-6">
-            {/* Card 1: Healthcare & Sanitation */}
+            {/* Card 1: Geographic context */}
             <Reveal direction="up" delay={0.1}>
               <div className="bg-[#ede6d8]/50 rounded-[2.5rem] p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
                 <div className="flex flex-col items-center">
                   <div className="w-6 h-6 bg-[var(--primary)] rounded-t-full mb-6" />
-                  <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">Healthcare & <br/> Sanitation</h3>
+                  <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">Upper West <br /> Region, Ghana</h3>
                 </div>
-                <div className="relative w-full h-40">
-                  <Image
-                    src="/images/luri/shape-healthcare.png"
-                    alt="Healthcare illustration"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <p className="text-stone-600 text-sm leading-relaxed max-w-[180px]">
+                  One of Ghana's most underserved areas — where every programme is designed, tested, and delivered on the ground.
+                </p>
               </div>
             </Reveal>
 
@@ -61,7 +56,7 @@ export function ImpactSection() {
               <div className="bg-[#ede6d8]/50 rounded-[2.5rem] overflow-hidden flex flex-col items-center text-center">
                 <div className="p-8 pb-0">
                   <div className="w-6 h-6 bg-[var(--accent)] rounded-t-full mb-6 mx-auto" />
-                  <h3 className="text-xl font-bold text-stone-800 mb-2 uppercase tracking-tight">Climate-Smart <br/> Agribusiness</h3>
+                  <h3 className="text-xl font-bold text-stone-800 mb-2 uppercase tracking-tight">Climate-Smart <br /> Agribusiness</h3>
                 </div>
                 <div className="relative w-full aspect-[3/4] mt-4">
                   <Image
@@ -88,21 +83,16 @@ export function ImpactSection() {
 
           {/* Column 3 */}
           <div className="flex flex-col gap-6">
-            {/* Card 3: STEM Education Scholarships */}
+            {/* Card 3: Who we serve */}
             <Reveal direction="up" delay={0.3}>
               <div className="bg-[#ede6d8]/50 rounded-[2.5rem] p-8 aspect-square flex flex-col items-center justify-between text-center overflow-hidden">
                 <div className="flex flex-col items-center">
                   <div className="w-6 h-6 bg-[var(--coral)] rounded-t-full mb-6" />
-                  <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">STEM Education <br/> Scholarships</h3>
+                  <h3 className="text-xl font-bold text-stone-800 uppercase tracking-tight">Women, Youth <br /> & Farmers</h3>
                 </div>
-                <div className="relative w-full h-48">
-                  <Image
-                    src="/images/luri/shape-stem.png"
-                    alt="STEM illustration"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <p className="text-stone-600 text-sm leading-relaxed max-w-[180px]">
+                  60% of all beneficiaries are women. Programmes close gender and economic gaps simultaneously.
+                </p>
               </div>
             </Reveal>
 
