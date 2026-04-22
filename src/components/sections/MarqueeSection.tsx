@@ -1,5 +1,6 @@
 "use client";
 import { MarqueeStrip } from "@/components/motion/MarqueeStrip";
+import { GSAPReveal as Reveal } from "@/components/motion/GSAPReveal";
 
 const partners = [
   { name: "Project C.U.R.E", style: "rounded-full" },
@@ -11,24 +12,32 @@ const partners = [
   { name: "STEM Education Authority", style: "rounded-full" },
 ];
 
-
 export function MarqueeSection() {
   return (
-    <section className="bg-[#faf9f6] py-8 border-y border-stone-200/50">
-      <div className="container-luri text-center mb-12">
-        <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-stone-500 text-[0.62rem] font-bold uppercase tracking-widest mb-5"
-          style={{ backgroundColor: "rgba(0,0,0,0.03)", borderColor: "rgba(0,0,0,0.08)" }}
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-stone-400 animate-pulse" />
-          Partners &amp; Affiliates
-        </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-stone-700 tracking-tight mb-3">
-          Trusted by leading institutions
-        </h2>
-        <p className="text-stone-500 text-sm font-medium max-w-md mx-auto leading-relaxed mb-8">
-          We work alongside government bodies, health directorates, and civil society organisations united around northern Ghana's development.
-        </p>
+    <section className="bg-[#faf9f6] py-10 sm:py-12 border-y border-stone-200/50">
+      <div className="container-luri text-center mb-10 sm:mb-12">
+        <Reveal>
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-stone-500 text-[0.62rem] font-bold uppercase tracking-widest mb-4 sm:mb-5"
+            style={{ backgroundColor: "rgba(0,0,0,0.03)", borderColor: "rgba(0,0,0,0.08)" }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-stone-400 animate-pulse" />
+            Partners &amp; Affiliates
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-stone-700 tracking-tight mb-3">
+            Trusted by leading institutions
+          </h2>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <p className="text-stone-500 text-sm font-medium max-w-md mx-auto leading-relaxed mb-6 sm:mb-8 px-4 sm:px-0">
+            We work alongside government bodies, health directorates, and civil society organisations
+            united around northern Ghana's development.
+          </p>
+        </Reveal>
       </div>
 
       <MarqueeStrip
@@ -36,19 +45,18 @@ export function MarqueeSection() {
           <div
             key={i}
             className={`
-              bg-[#ede6d8]/40 px-10 py-6 min-w-[240px] flex items-center justify-center
+              bg-[#ede6d8]/40 px-6 sm:px-10 py-4 sm:py-6 min-w-[180px] sm:min-w-[240px] flex items-center justify-center
               border border-stone-200/20 shadow-sm
               ${partner.style}
             `}
           >
-            <span className="text-stone-600 font-medium tracking-tight opacity-80 text-lg">
+            <span className="text-stone-600 font-medium tracking-tight opacity-80 text-base sm:text-lg text-center">
               {partner.name}
             </span>
           </div>
         ))}
-        itemClassName="px-3"
+        itemClassName="px-2 sm:px-3"
       />
     </section>
   );
 }
-

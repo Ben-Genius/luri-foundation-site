@@ -3,12 +3,12 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GSAPReveal as Reveal } from "@/components/motion/GSAPReveal";
+import { SplitHeading } from "@/components/motion/SplitHeading";
 import { RippleButton } from "@/components/motion/RippleButton";
-import { Heart, Shield, Plus, Activity, GraduationCapIcon, Projector, NetworkIcon } from "lucide-react";
+import { GraduationCapIcon, Projector, NetworkIcon, Activity } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Four partnership channels, exactly as described in the LURI Foundation Framework (§2, p.4)
 const channels = [
   {
     label: "Medical Supply Provision",
@@ -72,12 +72,12 @@ export function PartnerSection() {
       {/* Background parallax blobs */}
       <div
         ref={blobRef}
-        className="pointer-events-none absolute -top-40 -right-40 w-[560px] h-[560px] rounded-full"
+        className="pointer-events-none absolute -top-40 -right-40 w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] md:w-[560px] md:h-[560px] rounded-full"
         style={{ background: "radial-gradient(circle, rgba(0,80,53,0.08) 0%, transparent 70%)" }}
       />
       <div
         ref={blob2Ref}
-        className="pointer-events-none absolute -bottom-24 -left-24 w-[420px] h-[420px] rounded-full"
+        className="pointer-events-none absolute -bottom-24 -left-24 w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px] rounded-full"
         style={{ background: "radial-gradient(circle, rgba(182,144,0,0.07) 0%, transparent 70%)" }}
       />
 
@@ -95,14 +95,14 @@ export function PartnerSection() {
         <Activity size={40} strokeWidth={2} />
       </div>
 
-      <div className="max-w-[90rem] mx-auto relative z-10">
-        <div className="grid gap-16 lg:gap-24 items-center lg:grid-cols-[1fr_460px]">
+      <div className="container-luri relative z-10">
+        <div className="grid gap-12 sm:gap-16 lg:gap-24 items-center lg:grid-cols-[1fr_460px]">
 
           {/* ── Left: Text ── */}
           <div ref={leftRef}>
             <Reveal>
               <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[var(--primary)] text-[0.62rem] font-bold uppercase tracking-widest mb-8"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[var(--primary)] text-[0.62rem] font-bold uppercase tracking-widest mb-6 sm:mb-8"
                 style={{ backgroundColor: "rgba(0,80,53,0.05)", borderColor: "rgba(0,80,53,0.12)" }}
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
@@ -110,37 +110,33 @@ export function PartnerSection() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.05}>
-              <h2
-                className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.0] mb-6"
-                style={{ fontFamily: "var(--font-display)", color: "var(--primary)" }}
-              >
-                Project{" "}
-                <span style={{ color: "var(--accent)" }}>CURE.</span>
-              </h2>
-            </Reveal>
+            <SplitHeading
+              as="h2"
+              text="Project CURE."
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.0] mb-5 sm:mb-6 text-[var(--primary)]"
+            />
 
             <Reveal delay={0.1}>
-              <p className="text-base leading-relaxed mb-10 max-w-[660px]" style={{ color: "var(--ink-600)" }}>
+              <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[660px]" style={{ color: "var(--ink-600)" }}>
                 One of the world&apos;s largest distributors of donated medical supplies and
                 equipment. The partnership with LURI Foundation creates a powerful channel for
                 healthcare delivery and capacity-building across the Upper West Region, Ghana.
               </p>
             </Reveal>
 
-            {/* Stats — Project CURE's global reach */}
+            {/* Stats */}
             <Reveal delay={0.15}>
-              <div className="flex flex-wrap gap-8 mb-10">
+              <div className="flex flex-wrap gap-6 sm:gap-8 mb-8 sm:mb-10">
                 {stats.map((s) => (
                   <div key={s.label}>
                     <div
-                      className="text-3xl font-extrabold tracking-tight leading-none mb-1"
+                      className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-none mb-1"
                       style={{ color: "var(--primary)" }}
                     >
                       {s.val}
                     </div>
                     <div
-                      className="text-[0.6rem] font-bold uppercase tracking-widest"
+                      className="text-[0.58rem] sm:text-[0.6rem] font-bold uppercase tracking-widest"
                       style={{ color: "var(--ink-400)" }}
                     >
                       {s.label}
@@ -158,10 +154,10 @@ export function PartnerSection() {
           </div>
 
           {/* ── Right: Partnership card ── */}
-          <div ref={cardRef}>
+          <div ref={cardRef} className="w-full max-w-[460px] mx-auto lg:mx-0">
             <Reveal direction="right" delay={0.12}>
               <div
-                className="rounded-[2rem] bg-white relative overflow-hidden"
+                className="rounded-[1.5rem] sm:rounded-[2rem] bg-white relative overflow-hidden"
                 style={{ border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 24px 64px rgba(0,0,0,0.06)" }}
               >
                 {/* Inner arc decoration */}
@@ -170,10 +166,10 @@ export function PartnerSection() {
                   style={{ borderColor: "rgba(0,80,53,0.05)" }}
                 />
 
-                <div className="p-9">
+                <div className="p-6 sm:p-9">
                   {/* Status pill */}
                   <div
-                    className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-8"
+                    className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-6 sm:mb-8"
                     style={{ backgroundColor: "rgba(0,80,53,0.07)", color: "var(--primary)" }}
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
@@ -187,42 +183,34 @@ export function PartnerSection() {
                     Partnership Channels
                   </div>
                   <h3
-                    className="text-xl font-bold leading-snug mb-8"
+                    className="text-lg sm:text-xl font-bold leading-snug mb-6 sm:mb-8"
                     style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
                   >
                     Four channels.<br />One shared mission.
                   </h3>
 
-                  {/* Four channels from the framework */}
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {channels.map((ch, i) => (
                       <div
                         key={ch.label}
-                        className="flex items-start gap-4 pb-4"
+                        className="flex items-start gap-3 sm:gap-4 pb-3 sm:pb-4"
                         style={{
                           borderBottom: i < channels.length - 1 ? "1px solid rgba(0,0,0,0.06)" : "none",
                         }}
                       >
-                        {/* Channel number */}
                         <div
-                          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
+                          className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center mt-0.5"
                           style={{ backgroundColor: "rgba(0,80,53,0.08)" }}
                         >
-                          <span
-                            className="text-[0.6rem] font-bold"
-                            style={{ color: "var(--primary)" }}
-                          >
+                          <span className="text-[0.55rem] sm:text-[0.6rem] font-bold" style={{ color: "var(--primary)" }}>
                             {String(i + 1).padStart(2, "0")}
                           </span>
                         </div>
                         <div>
-                          <div
-                            className="text-sm font-bold mb-1 leading-snug"
-                            style={{ color: "var(--ink)" }}
-                          >
+                          <div className="text-xs sm:text-sm font-bold mb-0.5 sm:mb-1 leading-snug" style={{ color: "var(--ink)" }}>
                             {ch.label}
                           </div>
-                          <p className="text-xs leading-relaxed" style={{ color: "var(--ink-600)" }}>
+                          <p className="text-[0.7rem] sm:text-xs leading-relaxed" style={{ color: "var(--ink-600)" }}>
                             {ch.desc}
                           </p>
                         </div>

@@ -98,35 +98,49 @@ function LayeredTextIntro() {
   useEffect(() => {
     if (!isMounted || !containerRef.current) return;
     const container = containerRef.current;
-    const paragraphs = container.querySelectorAll("p");
-    const listItems = container.querySelectorAll("li");
-
-    const getLH = () => (window.innerWidth >= 768 ? 60 : 35);
-    let lh = getLH();
+    const lines = container.querySelectorAll("li");
 
     const createTimeline = () => {
       if (timelineRef.current) timelineRef.current.kill();
-      lh = getLH();
 
       timelineRef.current = gsap.timeline({ paused: true });
-      timelineRef.current.to(paragraphs, {
-        y: -lh,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.08
+
+      lines.forEach((line, i) => {
+        const pTags = line.querySelectorAll("p");
+        timelineRef.current!.to(pTags, {
+          yPercent: -100,
+          duration: 1.1,
+          ease: "expo.inOut",
+        }, i * 0.04);
       });
     };
 
     createTimeline();
 
-    // Entrance animation
-    gsap.fromTo(listItems,
-      { opacity: 0, x: -30 },
-      { opacity: 1, x: 0, stagger: 0.06, duration: 1.2, ease: "power4.out" }
+    gsap.fromTo(lines,
+      { opacity: 0, x: -40, rotateX: 20 },
+      {
+        opacity: 1,
+        x: 0,
+        rotateX: 0,
+        stagger: 0.08,
+        duration: 1.5,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: container,
+          start: "top 85%",
+        }
+      }
     );
 
-    const handleMouseEnter = () => timelineRef.current?.play();
-    const handleMouseLeave = () => timelineRef.current?.reverse();
+    const handleMouseEnter = () => {
+      timelineRef.current?.play();
+      gsap.to(container, { scale: 1.02, duration: 0.6, ease: "power3.out" });
+    };
+    const handleMouseLeave = () => {
+      timelineRef.current?.reverse();
+      gsap.to(container, { scale: 1, duration: 0.8, ease: "power3.out" });
+    };
 
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
@@ -140,14 +154,14 @@ function LayeredTextIntro() {
       window.removeEventListener("resize", handleResize);
       timelineRef.current?.kill();
     };
-  }, []);
+  }, [isMounted]);
 
   return (
     <div
       ref={containerRef}
-      className="font-black uppercase text-[var(--primary)] antialiased cursor-pointer overflow-hidden px-2 md:py-16 -mt-32"
+      className="font-black uppercase text-[var(--primary)] antialiased cursor-pointer overflow-hidden px-2 py-6 sm:py-10 md:py-16"
       style={{
-        fontSize: "clamp(3rem, 5.5vw, 4rem)",
+        fontSize: "clamp(2rem, 5.5vw, 4rem)",
         letterSpacing: "-0.00001em",
         lineHeight: 1,
       }}
@@ -155,34 +169,33 @@ function LayeredTextIntro() {
       <ul className="list-none p-0 m-0 flex flex-col items-start lg:items-end w-full">
         {introLines.map((line, i) => {
           const isEven = i % 2 === 0;
-          // Use a fixed value for SSR to avoid ReferenceError: window is not defined
           const winWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
-          const translateX = (i - centerIndex) * (winWidth >= 768 ? 35 : 20);
+          const translateX = (i - centerIndex) * (winWidth >= 768 ? 35 : 15);
 
           return (
             <li
               key={i}
               className="overflow-hidden relative"
               style={{
-                height: "clamp(35px, 5.5vw, 60px)",
+                height: "clamp(28px, 5.5vw, 60px)",
                 transform: `translateX(${translateX}px) skew(${isEven ? "60deg,-30deg" : "0deg,-30deg"}) scaleY(${isEven ? "0.66667" : "1.33333"})`,
                 transformOrigin: "center center",
               }}
             >
               <p
-                className="px-24 align-top whitespace-nowrap m-0 transition-colors duration-300"
+                className="px-4 sm:px-16 md:px-24 align-top whitespace-nowrap m-0 transition-colors duration-300"
                 style={{
-                  height: "clamp(35px, 5.5vw, 60px)",
-                  lineHeight: "clamp(30px, 5.2vw, 55px)",
+                  height: "clamp(28px, 5.5vw, 60px)",
+                  lineHeight: "clamp(24px, 5.2vw, 55px)",
                 }}
               >
                 {line.top}
               </p>
               <p
-                className="px-24 align-top whitespace-nowrap m-0 text-[var(--accent)]"
+                className="px-4 sm:px-16 md:px-24 align-top whitespace-nowrap m-0 text-[var(--accent)]"
                 style={{
-                  height: "clamp(35px, 5.5vw, 60px)",
-                  lineHeight: "clamp(30px, 5.2vw, 55px)",
+                  height: "clamp(28px, 5.5vw, 60px)",
+                  lineHeight: "clamp(24px, 5.2vw, 55px)",
                 }}
               >
                 {line.bottom}
@@ -228,22 +241,21 @@ function PillarsInteractive() {
               className="group w-full text-left cursor-pointer"
               onMouseEnter={() => isHoverRef.current && selectPillar(i)}
               onClick={() => {
-                if (!isHoverRef.current) {
-                  if (i === activeIndex) {
-                    setIsFlipped((v) => !v);
-                  } else {
-                    selectPillar(i);
-                  }
+                if (i === activeIndex) {
+                  setIsFlipped((v) => !v);
+                } else {
+                  setActiveIndex(i);
+                  setIsFlipped(true);
                 }
               }}
             >
               <div
-                className="flex items-center gap-4 md:gap-5 py-5 md:py-6 border-b transition-colors duration-300"
+                className="flex items-center gap-3 sm:gap-4 md:gap-5 py-4 sm:py-5 md:py-6 border-b transition-colors duration-300"
                 style={{ borderColor: isActive ? "rgba(0,80,53,0.18)" : "rgba(0,80,53,0.06)" }}
               >
                 {/* Number */}
                 <span
-                  className="text-[0.62rem] font-bold uppercase tracking-widest w-6 flex-shrink-0 transition-colors duration-400"
+                  className="text-[0.58rem] sm:text-[0.62rem] font-bold uppercase tracking-widest w-5 sm:w-6 flex-shrink-0 transition-colors duration-400"
                   style={{ color: isActive ? "var(--primary)" : "rgba(0,0,0,0.25)" }}
                 >
                   {p.number}
@@ -254,7 +266,7 @@ function PillarsInteractive() {
                   <span
                     className="block font-black uppercase leading-none transition-all duration-400"
                     style={{
-                      fontSize: "clamp(1.55rem, 3.2vw, 2.8rem)",
+                      fontSize: "clamp(1.2rem, 3.2vw, 2.8rem)",
                       letterSpacing: "-0.03em",
                       color: isActive ? "var(--primary)" : "rgba(0,0,0,0.22)",
                     }}
@@ -262,12 +274,11 @@ function PillarsInteractive() {
                     {p.label}
                   </span>
 
-                  {/* Expandable short desc */}
                   <div
                     className="overflow-hidden transition-all duration-500"
                     style={{ maxHeight: isActive ? "80px" : "0px", marginTop: isActive ? "8px" : "0px", opacity: isActive ? 1 : 0 }}
                   >
-                    <p className="text-[var(--ink-600)] text-sm font-medium leading-relaxed">
+                    <p className="text-[var(--ink-600)] text-xs sm:text-sm font-medium leading-relaxed">
                       {p.shortDesc}
                     </p>
                   </div>
@@ -283,13 +294,13 @@ function PillarsInteractive() {
           );
         })}
 
-        {/* Mobile-only: show info below list when flipped */}
+        {/* Mobile: show details below list */}
         <div
           className="md:hidden overflow-hidden transition-all duration-500 mt-4"
-          style={{ maxHeight: isFlipped ? "400px" : "0px", opacity: isFlipped ? 1 : 0 }}
+          style={{ maxHeight: isFlipped ? "600px" : "0px", opacity: isFlipped ? 1 : 0 }}
         >
           <div
-            className="rounded-[1.5rem] p-6 space-y-4"
+            className="rounded-[1.25rem] sm:rounded-[1.5rem] p-5 sm:p-6 space-y-4"
             style={{ backgroundColor: active.color }}
           >
             <p className="text-white/55 text-xs italic leading-snug">&ldquo;{active.tagline}&rdquo;</p>
@@ -314,7 +325,7 @@ function PillarsInteractive() {
 
       {/* ── RIGHT: Image flip panel ── */}
       <div
-        className="hidden md:block md:w-[46%] lg:w-[50%] md:h-[500px] lg:h-[580px] cursor-pointer"
+        className="hidden md:block md:w-[46%] lg:w-[50%] md:h-[460px] lg:h-[580px] cursor-pointer"
         style={{ perspective: "1300px" }}
         onMouseEnter={() => isHoverRef.current && setIsFlipped(true)}
         onMouseLeave={() => isHoverRef.current && setIsFlipped(false)}
@@ -332,10 +343,9 @@ function PillarsInteractive() {
         >
           {/* ── Front: image ── */}
           <div
-            className="absolute inset-0 rounded-lg overflow-hidden"
+            className="absolute inset-0 rounded-xl overflow-hidden"
             style={{ backfaceVisibility: "hidden" }}
           >
-            {/* All 3 images in DOM, cross-fade via opacity */}
             {pillarsDisplay.map((p, i) => (
               <img
                 key={p.id}
@@ -346,15 +356,12 @@ function PillarsInteractive() {
               />
             ))}
 
-            {/* Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
 
-            {/* Bottom-right hint */}
-            <div className="absolute bottom-6 right-6 flex items-center gap-2 px-3 py-2 rounded-full border border-white/25 backdrop-blur-sm bg-white/10 text-white text-[0.62rem] font-bold uppercase tracking-widest transition-opacity duration-300 opacity-70 hover:opacity-100">
+            <div className="absolute bottom-6 right-6 flex items-center gap-2 px-3 py-2 rounded-full border border-white/25 backdrop-blur-sm bg-white/10 text-white text-[0.62rem] font-bold uppercase tracking-widest opacity-70 hover:opacity-100 transition-opacity">
               Hover for details <ArrowRight className="h-3 w-3" />
             </div>
 
-            {/* Active pillar label bottom-left */}
             <div className="absolute bottom-6 left-6 text-white">
               <span className="text-[0.62rem] font-bold uppercase tracking-widest text-white/50 block mb-1">
                 {active.number}
@@ -374,23 +381,12 @@ function PillarsInteractive() {
               backgroundColor: active.color,
             }}
           >
-            {/* ── Bubble Design Background ── */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
               <div className="absolute -top-[10%] -left-[10%] w-64 h-64 rounded-full bg-white opacity-[0.15] blur-3xl" />
               <div className="absolute top-[20%] -right-[15%] w-80 h-80 rounded-full bg-black opacity-[0.2] blur-[100px]" />
               <div className="absolute bottom-[10%] left-[5%] w-40 h-40 rounded-full bg-white opacity-[0.12] blur-2xl" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-[0.06]"
-                style={{
-                  backgroundImage: "radial-gradient(circle at 20% 30%, white 0%, transparent 10%), radial-gradient(circle at 80% 70%, white 0%, transparent 15%)",
-                  filter: "blur(40px)"
-                }}
-              />
-              {/* Distinct small bubbles */}
-              <div className="absolute top-[15%] left-[20%] w-3 h-3 rounded-full bg-white/20 blur-[1px]" />
-              <div className="absolute top-[45%] right-[15%] w-5 h-5 rounded-full bg-white/10 blur-[2px]" />
-              <div className="absolute bottom-[25%] left-[40%] w-4 h-4 rounded-full bg-white/15 blur-[1px]" />
             </div>
-            {/* Watermark number */}
+
             <div
               className="absolute -bottom-8 -right-4 font-black leading-none pointer-events-none select-none"
               style={{ fontSize: "clamp(10rem,22vw,18rem)", color: "rgba(255,255,255,0.04)", letterSpacing: "-0.05em" }}
@@ -398,18 +394,18 @@ function PillarsInteractive() {
               {active.number}
             </div>
 
-            <div className="relative z-10 h-full flex flex-col justify-between p-10 lg:p-12">
+            <div className="relative z-10 h-full flex flex-col justify-between p-8 lg:p-12">
               <div>
                 <div className="inline-flex items-center justify-center h-11 w-11 rounded-2xl bg-white/10 text-white mb-5">
                   {active.icon}
                 </div>
-                <h3 className="text-3xl lg:text-4xl font-bold text-white mb-2 tracking-tight leading-tight">
+                <h3 className="text-2xl lg:text-4xl font-bold text-white mb-2 tracking-tight leading-tight">
                   {active.label}
                 </h3>
                 <p className="text-white/50 text-sm italic mb-6 leading-snug">
                   &ldquo;{active.tagline}&rdquo;
                 </p>
-                <p className="text-white/85 text-base leading-relaxed font-medium mb-7">
+                <p className="text-white/85 text-sm lg:text-base leading-relaxed font-medium mb-7">
                   {active.fullDesc}
                 </p>
                 <ul className="space-y-2.5">
@@ -447,83 +443,81 @@ function PillarsInteractive() {
 
 export function PillarsSection() {
   return (
-    <ScrollThemeSection theme="#fffff">
-      <div className="py-12 md:py-24 px-4 md:px-6 lg:px-8">
-        {/* Outer rounded container */}
-        {/* ── Two-column header ── */}
-        <div className="flex flex-col max-w-[90rem] mx-auto lg:flex-row lg:items-end lg:gap-16  py-12 md:py-24 px-4 md:px-6 lg:px-8">
-          {/* Left: badge + text */}
-          <div className="lg:w-5/12 mb-10 lg:mb-0">
-            <Reveal>
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[var(--primary)] text-[0.62rem] font-bold uppercase tracking-widest mb-6"
-                style={{ backgroundColor: "rgba(0,80,53,0.05)", borderColor: "rgba(0,80,53,0.12)" }}
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
-                Strategic Framework
-              </div>
-            </Reveal>
+    <ScrollThemeSection theme="#ffffff">
+      {/* ── Two-column header ── */}
+      <div className="flex flex-col max-w-[90rem] mx-auto lg:flex-row lg:items-end lg:gap-16 py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        {/* Left: badge + text */}
+        <div className="lg:w-5/12 mb-10 lg:mb-0">
+          <Reveal>
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[var(--primary)] text-[0.62rem] font-bold uppercase tracking-widest mb-6"
+              style={{ backgroundColor: "rgba(0,80,53,0.05)", borderColor: "rgba(0,80,53,0.12)" }}
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
+              Strategic Framework
+            </div>
+          </Reveal>
 
-            <Reveal delay={0.1}>
-              <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary)] tracking-tight leading-tight mb-4">
-                Three pillars.<br />One mission.
-              </h2>
-            </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--primary)] tracking-tight leading-tight mb-4">
+              Three pillars.<br />One mission.
+            </h2>
+          </Reveal>
 
-            <Reveal delay={0.2}>
-              <p className="text-[var(--ink-600)] text-base font-medium leading-relaxed max-w-[340px]">
-                Each programme area addresses a specific barrier to economic participation
-                faced by individuals in rural and peri-urban Ghana.
-              </p>
-            </Reveal>
+          <Reveal delay={0.2}>
+            <p className="text-[var(--ink-600)] text-sm sm:text-base font-medium leading-relaxed max-w-[340px]">
+              Each programme area addresses a specific barrier to economic participation
+              faced by individuals in rural and peri-urban Ghana.
+            </p>
+          </Reveal>
 
-            {/* Stat chips */}
-            <Reveal delay={0.3}>
-              <div className="flex flex-wrap gap-3 mt-8">
-                {[
-                  { val: "600+", label: "Trained by Year 3" },
-                  { val: "100", label: "STEM Scholarships" },
-                  { val: "60%", label: "Female Beneficiaries" },
-                ].map((s) => (
-                  <div
-                    key={s.label}
-                    className="flex flex-col px-4 py-3 rounded-2xl border"
-                    style={{ backgroundColor: "rgba(0,80,53,0.04)", borderColor: "rgba(0,80,53,0.1)" }}
-                  >
-                    <span className="text-xl font-black text-[var(--primary)] leading-none tracking-tight">
-                      {s.val}
-                    </span>
-                    <span className="text-[0.62rem] font-semibold text-[var(--ink-600)] uppercase tracking-widest mt-1">
-                      {s.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Right: LayeredText */}
-          <div className="lg:w-7/12">
-            <LayeredTextIntro />
-          </div>
+          {/* Stat chips */}
+          <Reveal delay={0.3}>
+            <div className="flex flex-wrap gap-2 sm:gap-3 mt-6 sm:mt-8">
+              {[
+                { val: "600+", label: "Trained by Year 3" },
+                { val: "100", label: "STEM Scholarships" },
+                { val: "60%", label: "Female Beneficiaries" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="flex flex-col px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border"
+                  style={{ backgroundColor: "rgba(0,80,53,0.04)", borderColor: "rgba(0,80,53,0.1)" }}
+                >
+                  <span className="text-lg sm:text-xl font-black text-[var(--primary)] leading-none tracking-tight">
+                    {s.val}
+                  </span>
+                  <span className="text-[0.58rem] sm:text-[0.62rem] font-semibold text-[var(--ink-600)] uppercase tracking-widest mt-1">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
+
+        {/* Right: LayeredText */}
+        <div className="lg:w-7/12 overflow-hidden">
+          <LayeredTextIntro />
+        </div>
+      </div>
+
+      {/* ── Interactive pillars container ── */}
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 pb-12 sm:pb-16 md:pb-24 max-w-[90rem] mx-auto">
         <div
-          className="mx-auto max-w-[100rem] rounded-lg md:rounded-xl border"
+          className="rounded-xl sm:rounded-2xl md:rounded-3xl border"
           style={{ backgroundColor: "#f5f0e8", borderColor: "rgba(0,80,53,0.07)" }}
         >
-          <div className="px-6 md:px-14 lg:px-20 pt-14 md:pt-20 pb-14 md:pb-20">
+          <div className="px-4 sm:px-8 md:px-14 lg:px-20 pt-10 sm:pt-14 md:pt-20 pb-10 sm:pb-14 md:pb-20">
 
-
-
-            {/* ── Interactive pillars ── */}
             <Reveal direction="up" delay={0.1} distance={30}>
               <PillarsInteractive />
             </Reveal>
 
-            {/* ── Footer CTA ── */}
+            {/* Footer CTA */}
             <Reveal delay={0.2}>
               <div
-                className="mt-14 pt-10 flex flex-col sm:flex-row items-center justify-between gap-6 border-t"
+                className="mt-10 sm:mt-14 pt-8 sm:pt-10 flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 border-t"
                 style={{ borderColor: "rgba(0,80,53,0.10)" }}
               >
                 <p className="text-[var(--ink-600)] text-sm font-medium max-w-xs text-center sm:text-left leading-relaxed">

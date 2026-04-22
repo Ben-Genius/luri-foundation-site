@@ -39,14 +39,22 @@ const footerLinks = [
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openSub, setOpenSub] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const previewContainerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
+
+  /* ── Scroll-aware header ── */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useGSAP(
     () => {
@@ -124,22 +132,25 @@ export function SiteShell({ children }: { children: ReactNode }) {
   }, [menuOpen]);
 
   return (
-    <div className="flex  min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col">
       {/* ── Header ── */}
       <motion.header
-        className="fixed inset-x-0 top-0 z-50 border-[var(--primary)]/5 bg-[var(--background)]/90 backdrop-blur-md"
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-50 bg-[var(--background)]/90 backdrop-blur-md transition-shadow duration-300"
+        style={{
+          boxShadow: scrolled ? "0 2px 24px rgba(0,80,53,0.08)" : "none",
+        }}
         initial={false}
       >
         {/* Top accent bar */}
-        <div className=" w-full bg-[var(--primary)] mt-1" />
-        <div className="container-luri flex h-16 items-center justify-between md:h-18 ">
+        <div className="h-[3px] w-full bg-[var(--primary)]" />
+        <div className="container-luri flex h-16 items-center justify-between md:h-18">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group pt-4">
-            <img src="/images/logo.png" alt="LURI Logo" className="h-20 w-auto object-contain" />
+          <Link href="/" className="flex items-center gap-2 group pt-2">
+            <img src="/images/logo.png" alt="LURI Logo" className="h-16 sm:h-20 w-auto object-contain" />
           </Link>
 
-
-          {/* Right side - Hamburger only */}
+          {/* Right side - Hamburger */}
           <div className="flex items-center">
             <button
               onClick={() => setMenuOpen((v) => !v)}
@@ -148,25 +159,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
             >
               <div className="relative h-4 w-6">
                 <motion.span
-                  animate={{
-                    rotate: menuOpen ? 45 : 0,
-                    y: menuOpen ? 7 : 0,
-                  }}
+                  animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 7 : 0 }}
                   className="absolute top-0 left-0 block h-[1.5px] w-full bg-[var(--primary)] rounded-full"
                 />
                 <motion.span
-                  animate={{
-                    opacity: menuOpen ? 0 : 1,
-                    scaleX: menuOpen ? 0 : 1
-                  }}
+                  animate={{ opacity: menuOpen ? 0 : 1, scaleX: menuOpen ? 0 : 1 }}
                   className="absolute top-1/2 left-0 block h-[1.5px] w-full bg-[var(--primary)] rounded-full -translate-y-1/2"
                 />
                 <motion.span
-                  animate={{
-                    rotate: menuOpen ? -45 : 0,
-                    y: menuOpen ? -7 : 0,
-                    width: menuOpen ? "100%" : "65%"
-                  }}
+                  animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -7 : 0, width: menuOpen ? "100%" : "65%" }}
                   className="absolute bottom-0 right-0 block h-[1.5px] bg-[var(--primary)] rounded-full"
                 />
               </div>
@@ -175,39 +176,39 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </motion.header>
 
-      {/* ── Full Screen Mobile Menu Overlay (Raygan style) ── */}
+      {/* ── Full Screen Menu Overlay ── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[60] bg-[var(--primary-light)] overflow-y-auto"
             ref={sectionRef}
           >
             {/* Overlay Header */}
             <div className="container-luri flex h-16 items-center justify-between md:h-18">
-              <Link href="/" className="flex items-center gap-3 pt-4" onClick={() => setMenuOpen(false)}>
-                <img src="/images/logo.png" alt="Logo" className="h-20 w-auto object-contain" />
+              <Link href="/" className="flex items-center gap-3 pt-2" onClick={() => setMenuOpen(false)}>
+                <img src="/images/logo.png" alt="Logo" className="h-16 sm:h-20 w-auto object-contain" />
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--primary)]/10 text-[var(--primary)]"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/5 transition-colors"
               >
-                <span className="text-2xl">&times;</span>
+                <span className="text-2xl leading-none">&times;</span>
               </button>
             </div>
 
             {/* Menu Links & Preview */}
-            <div className="container-luri pt-12 pb-24 grid lg:grid-cols-2 gap-12 items-center">
-              <nav className="flex flex-col gap-4">
+            <div className="container-luri pt-8 sm:pt-12 pb-24 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <nav className="flex flex-col gap-2 sm:gap-4">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1, duration: 0.5, ease }}
+                    transition={{ delay: i * 0.08, duration: 0.5, ease }}
                     className="menu-link-item"
                   >
                     <Link
@@ -215,15 +216,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
                       className="group flex flex-col items-start gap-1"
                       onClick={() => setMenuOpen(false)}
                     >
-                      <span className="text-[clamp(2rem,6vw,4rem)] font-bold text-[var(--primary)] leading-tight tracking-tight hover:italic transition-all">
-                        <span className="opacity-20 mr-2">{String(i + 1).padStart(2, "0")}</span> {link.label}
+                      <span className="text-[clamp(1.8rem,6vw,4rem)] font-bold text-[var(--primary)] leading-tight tracking-tight hover:italic transition-all">
+                        <span className="opacity-20 mr-2 text-base sm:text-2xl">{String(i + 1).padStart(2, "0")}</span>
+                        {link.label}
                       </span>
                     </Link>
                   </motion.div>
                 ))}
               </nav>
 
-              {/* Preview Container - Visible on Desktop */}
+              {/* Preview Container - Desktop only */}
               <div className="hidden lg:block relative aspect-[4/3] w-full max-w-xl mx-auto">
                 <div
                   ref={previewContainerRef}
@@ -234,17 +236,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     className="w-full h-full object-cover opacity-40 grayscale"
                     alt="Menu preview"
                   />
-                  {/* GSAP will inject dynamic images here */}
                 </div>
               </div>
             </div>
 
-            {/* Bottom Buttons - Raygan style */}
-            <div className="container-luri mt-20 flex flex-wrap gap-4 border-t border-[var(--primary)]/10 pt-12">
-              <RippleButton href="/programmes" variant="primary" textColor="white" size="lg" className="rounded-lg px-8 flex items-center gap-2">
+            {/* Bottom Buttons */}
+            <div className="container-luri mt-10 flex flex-wrap gap-3 sm:gap-4 border-t border-[var(--primary)]/10 pt-8 sm:pt-12">
+              <RippleButton href="/programmes" variant="primary" textColor="white" size="lg" className="rounded-lg px-6 sm:px-8 flex items-center gap-2">
                 What we do <span className="text-lg">→</span>
               </RippleButton>
-              <RippleButton href="/get-involved/donate" variant="secondary" textColor="white" size="lg" className="rounded-lg px-8 flex items-center gap-2">
+              <RippleButton href="/get-involved/donate" variant="secondary" textColor="white" size="lg" className="rounded-lg px-6 sm:px-8 flex items-center gap-2">
                 Donate now <span className="text-lg">→</span>
               </RippleButton>
             </div>
@@ -253,17 +254,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </AnimatePresence>
 
       {/* ── Main ── */}
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pt-[67px] md:pt-[75px]">{children}</main>
 
       {/* ── Footer ── */}
       <footer className="border-t border-[var(--primary)]/10 bg-[var(--primary-dark)] text-white">
-        {/* Top row */}
-        <div className="container-luri py-14">
-          <div className="grid gap-10 md:grid-cols-4">
+        <div className="container-luri py-12 md:py-14">
+          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             {/* Brand */}
-            <div className="md:col-span-2">
-              <div className="mb-6">
-                <img src="/images/logo.png" alt="LURI Foundation" className="h-24 w-auto " />
+            <div className="sm:col-span-2">
+              <div className="mb-4">
+                <img src="/images/logo.png" alt="LURI Foundation" className="h-20 sm:h-24 w-auto" />
               </div>
               <p className="mt-1 text-xs font-semibold tracking-widest uppercase text-white/40">
                 People · Partnership · Purpose
@@ -291,7 +291,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             {/* Newsletter */}
             <div>
               <h4 className="mb-4 text-xs font-bold uppercase tracking-widest text-white/40">Stay updated</h4>
-              <p className="mb-4 text-sm text-white/60">
+              <p className="mb-4 text-sm text-white/60 leading-relaxed">
                 Quarterly stories, KPIs, and field updates from Kulfuo.
               </p>
               <form className="flex flex-col gap-2" onSubmit={(e) => e.preventDefault()}>
@@ -313,7 +313,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
         {/* Bottom bar */}
         <div className="border-t border-white/8">
-          <div className="container-luri flex flex-col gap-2 py-5 text-xs text-white/30 md:flex-row md:items-center md:justify-between">
+          <div className="container-luri flex flex-col gap-2 py-5 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between">
             <span>© {new Date().getFullYear()} LURI Foundation. All rights reserved.</span>
             <div className="flex gap-4">
               <Link href="#" className="hover:text-white/60 transition-colors">Privacy Policy</Link>
