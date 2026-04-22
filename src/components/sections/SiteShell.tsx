@@ -25,6 +25,7 @@ const navLinks = [
   },
   { href: "/impact", label: "Impact", imgUrl: "/images/nav/impact.jpg" },
   { href: "/partners", label: "Partners", imgUrl: "/images/nav/partners.avif" },
+  { href: "/contact", label: "Contact", imgUrl: "/images/nav/home.jpg" },
 ];
 
 const footerLinks = [
@@ -34,6 +35,7 @@ const footerLinks = [
   { href: "/impact", label: "Impact" },
   { href: "/partners", label: "Partners" },
   { href: "/get-involved", label: "Get Involved" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function SiteShell({ children }: { children: ReactNode }) {
@@ -302,7 +304,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 />
                 <button
                   type="submit"
-                  className="rounded-lg bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-[var(--ink)] hover:bg-amber-300 transition-colors"
+                  className="rounded-lg bg-[var(--accent)] px-4 py-2.5 text-sm font-bold text-white hover:bg-amber-500 transition-colors cursor-pointer"
                 >
                   Subscribe
                 </button>

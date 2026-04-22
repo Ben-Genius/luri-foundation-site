@@ -329,12 +329,14 @@ function PillarsInteractive() {
                 </li>
               ))}
             </ul>
-            <Link
+            <RippleButton
               href={active.href}
-              className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-5 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[var(--accent)] hover:text-white transition-colors"
+              variant="secondary"
+              textColor="white"
+              className="mt-4"
             >
               Read More <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            </RippleButton>
           </div>
         </div>
       </div>
@@ -444,19 +446,15 @@ function PillarsInteractive() {
                 </ul>
               </div>
 
-              <Link
+              <RippleButton
                 href={active.href}
-                onClick={(e) => e.stopPropagation()}
-                className="group/btn inline-flex items-center gap-3 self-start bg-white text-[var(--primary)] pl-1.5 pr-6 py-1.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-200 hover:bg-[var(--accent)] hover:text-white mt-6"
+                variant="secondary"
+                textColor="white"
+                className="mt-6"
+                onClick={(e: React.MouseEvent) => e.stopPropagation()}
               >
-                <span
-                  className="h-9 w-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors group-hover/btn:bg-white/20"
-                  style={{ backgroundColor: "rgba(0,80,53,0.08)" }}
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </span>
                 Read More
-              </Link>
+              </RippleButton>
             </div>
           </div>
         </motion.div>

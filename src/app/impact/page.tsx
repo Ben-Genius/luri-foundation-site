@@ -32,7 +32,7 @@ export default function ImpactPage() {
 
       {/* ── KPI Table ── */}
       <section className="section-pad bg-white">
-        <div className="container-luri">
+        <div className="max-w-[98rem] mx-auto">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]/50 mb-3">Year 1 vs Year 3</p>
           </Reveal>
@@ -164,44 +164,7 @@ export default function ImpactPage() {
       {/* ── Annual Reports ── */}
       <section className="section-pad bg-white">
         <div className="container-luri max-w-3xl">
-          <Reveal>
-            <p className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]/50 mb-3">Transparency</p>
-            <h2
-              className="text-3xl font-extrabold text-[var(--ink)] mb-6 md:text-4xl"
-              style={{ fontFamily: "var(--font-display, 'Syne', sans-serif)", letterSpacing: "-0.03em" }}
-            >
-              Annual Reports
-            </h2>
-            <p className="text-[var(--ink-600,#374151)] mb-8">
-              All financial and programmatic reports are publicly available. Published within 90 days of year-end.
-            </p>
 
-            <div className="flex flex-col gap-3">
-              {[{ year: "2026", label: "LURI Foundation — Inaugural Impact Report", status: "Coming soon" }].map((r) => (
-                <div
-                  key={r.year}
-                  className="flex items-center justify-between rounded-2xl border border-[var(--primary)]/10 bg-[var(--cream-100,#f5f0e8)] p-5"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--primary)] text-white">
-                      <FileText className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-[var(--ink)] text-sm">{r.label}</p>
-                      <p className="text-xs text-[var(--ink-400,#6b7280)]">{r.year}</p>
-                    </div>
-                  </div>
-                  <span className="pill bg-[var(--accent-light)] text-[var(--accent)] text-[10px]">{r.status}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8">
-              <RippleButton href="/get-involved/donate" variant="secondary" size="md">
-                Support transparent impact
-              </RippleButton>
-            </div>
-          </Reveal>
         </div>
       </section>
     </>
