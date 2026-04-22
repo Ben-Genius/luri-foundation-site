@@ -11,7 +11,13 @@ export function PartnerSection() {
         <div className="grid gap-10 items-center md:grid-cols-2">
           <Reveal direction="left">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]/50 mb-4">Strategic partner</p>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[var(--primary)] text-[0.62rem] font-bold uppercase tracking-widest mb-6"
+                style={{ backgroundColor: "rgba(0,80,53,0.05)", borderColor: "rgba(0,80,53,0.12)" }}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
+                Strategic Partner
+              </div>
               <h2
                 className="text-3xl font-bold text-[var(--ink)] md:text-5xl mb-5 tracking-tight"
                 style={{ fontFamily: "var(--font-display)" }}

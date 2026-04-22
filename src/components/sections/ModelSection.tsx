@@ -7,15 +7,24 @@ export function ModelSection() {
     <section className="section-pad bg-white">
       <div className="container-luri">
         <Reveal>
-          <div className="section-label text-[var(--primary)]/50">
-            <span className="ed-label">How we work</span>
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[var(--primary)] text-[0.62rem] font-bold uppercase tracking-widest mb-6"
+            style={{ backgroundColor: "rgba(0,80,53,0.05)", borderColor: "rgba(0,80,53,0.12)" }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
+            Our Methodology
           </div>
         </Reveal>
         <SplitHeading
           as="h2"
           text="Assess. Design. Deliver. Measure. Scale."
-          className="mb-16 text-4xl font-extrabold text-[var(--ink)] md:text-6xl"
+          className="mb-5 text-4xl font-extrabold text-[var(--ink)] md:text-6xl"
         />
+        <Reveal delay={0.1}>
+          <p className="text-[var(--ink-600)] text-base font-medium leading-relaxed max-w-[520px] mb-16">
+            A five-stage cycle that ensures every initiative is community-grounded, rigorously measured, and built to continue without us.
+          </p>
+        </Reveal>
 
         <div className="grid gap-4 md:grid-cols-5">
           {[

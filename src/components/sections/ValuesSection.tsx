@@ -5,19 +5,28 @@ import { ScrollThemeSection } from "@/components/motion/ScrollThemeSection";
 
 export function ValuesSection() {
   return (
-    <ScrollThemeSection theme="#0a5c60">
-      <section className="section-pad bg-transparent text-white overflow-hidden relative">
-        <div className="container-luri">
+    <ScrollThemeSection theme="#07585c">
+      <section className="section-pad text-white overflow-hidden relative">
+        <div className="max-w-[95rem] mx-auto">
           <Reveal>
-            <div className="section-label text-white/30">
-              <span className="ed-label">Our foundation</span>
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-white/70 text-[0.62rem] font-bold uppercase tracking-widest mb-6"
+              style={{ backgroundColor: "rgba(255,255,255,0.07)", borderColor: "rgba(255,255,255,0.15)" }}
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              Our Foundation
             </div>
           </Reveal>
           <SplitHeading
             as="h2"
             text="Values that drive every decision."
-            className="mb-14 text-4xl font-extrabold text-white md:text-6xl"
+            className="mb-5 text-4xl font-extrabold text-white md:text-6xl"
           />
+          <Reveal delay={0.1}>
+            <p className="text-white/60 text-base font-medium leading-relaxed max-w-[480px] mb-14">
+              Six principles that govern how we design programmes, steward resources, and show up for the communities that trust us.
+            </p>
+          </Reveal>
 
           <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {[

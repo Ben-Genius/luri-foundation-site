@@ -6,11 +6,59 @@ export function ImpactSection() {
   return (
     <section className="section-pad bg-white">
       <div className="max-w-[95%] mx-auto">
-        <Reveal>
-          <h2 className="display-heading text-center mb-16 max-w-4xl mx-auto">
-            A modern framework for <br className="hidden md:block" /> measurable human impact
-          </h2>
-        </Reveal>
+
+        {/* ── Section Header ── */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-16">
+
+          {/* Left: eyebrow + heading + description */}
+          <div className="lg:max-w-2xl">
+            <Reveal>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[var(--primary)] text-[0.62rem] font-bold uppercase tracking-widest mb-6"
+                style={{ backgroundColor: "rgba(0,80,53,0.05)", borderColor: "rgba(0,80,53,0.12)" }}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
+                Impact &amp; Accountability
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <h2 className="text-3xl md:text-5xl font-bold text-[var(--primary)] tracking-tight leading-tight mb-5">
+                Proof over promises.
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p className="text-[var(--ink-600)] text-base font-medium leading-relaxed max-w-[440px]">
+                Every programme is co-designed with communities, delivered without cash transfers, and independently verified. We measure outputs, outcomes, and long-term change — then publish the results.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Right: accountability trust stats */}
+          <Reveal direction="right" delay={0.25}>
+            <div className="flex flex-row lg:flex-col gap-3 flex-wrap">
+              {[
+                { val: "100%", label: "Skills-based delivery" },
+                { val: "Annual", label: "Independent evaluation" },
+                { val: "Public", label: "Impact reports" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="flex items-center gap-4 px-5 py-3.5 rounded-2xl border"
+                  style={{ backgroundColor: "rgba(0,80,53,0.04)", borderColor: "rgba(0,80,53,0.1)" }}
+                >
+                  <span className="text-xl font-black text-[var(--primary)] leading-none tracking-tight whitespace-nowrap">
+                    {s.val}
+                  </span>
+                  <span className="text-[0.62rem] font-semibold text-[var(--ink-600)] uppercase tracking-widest">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Column 1 */}

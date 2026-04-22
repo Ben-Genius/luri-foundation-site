@@ -18,6 +18,15 @@ export function NewsletterSection() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center relative z-10">
             {/* Left Content */}
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+              <Reveal direction="up" delay={0.05}>
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-white/70 text-[0.62rem] font-bold uppercase tracking-widest mb-6"
+                  style={{ backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)" }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                  Get Involved
+                </div>
+              </Reveal>
               <Reveal direction="up" delay={0.1}>
                 <div className="mb-6 sm:mb-8 flex -space-x-3 overflow-hidden">
                   {[1, 2, 3, 4, 5, 6].map((i) => (
