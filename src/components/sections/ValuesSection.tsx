@@ -88,6 +88,7 @@ export function ValuesSection() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 sm:gap-6 mb-10 sm:mb-14">
             <SplitHeading
               as="h2"
+              highlightWords={["drive", "decision"]}
               text="Values that drive every decision."
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-2xl"
             />

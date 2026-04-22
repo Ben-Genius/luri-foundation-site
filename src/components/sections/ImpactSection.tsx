@@ -56,6 +56,7 @@ export function ImpactSection() {
             <SplitHeading
               as="h2"
               text="Proof over promises."
+              highlightWords={["promises"]}
               className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--primary)] tracking-tight leading-tight mb-4 sm:mb-5"
             />
 

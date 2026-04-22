@@ -113,6 +113,7 @@ export function PartnerSection() {
             <SplitHeading
               as="h2"
               text="Project CURE."
+              highlightWords={["cure"]}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.0] mb-5 sm:mb-6 text-[var(--primary)]"
             />
 
@@ -147,7 +148,7 @@ export function PartnerSection() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <RippleButton href="/partners" variant="secondary" size="lg" textColor="white">
+              <RippleButton href="/partners" variant="primary" size="lg" textColor="white">
                 View partner framework
               </RippleButton>
             </Reveal>

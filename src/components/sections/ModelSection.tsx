@@ -106,7 +106,8 @@ export function ModelSection() {
             </Reveal>
             <SplitHeading
               as="h2"
-              text="Five stages. One continuous cycle."
+              text="Five Stages. One Continuous Cycle."
+              highlightWords={["Five", "One"]}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--ink)] max-w-2xl"
             />
           </div>

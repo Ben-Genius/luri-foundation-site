@@ -50,8 +50,8 @@ export function NewsletterSection() {
 
               <Reveal direction="up" delay={0.2}>
                 <h2 className="mb-4 sm:mb-6 text-[clamp(1.75rem,5vw,4rem)] font-bold leading-[1.1] text-white tracking-tight">
-                  <span className="italic font-medium opacity-90">Your partnership</span> <br />
-                  changes everything.
+                  <span className="font-medium opacity-90 ">Your partnership</span> <br />
+                  changes <span className="font-medium opacity-90 underline">everything.</span>
                 </h2>
               </Reveal>
 
