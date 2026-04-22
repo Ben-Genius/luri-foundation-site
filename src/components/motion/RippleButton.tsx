@@ -3,6 +3,12 @@
 import { useState, type MouseEvent, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
+import { clsx, type ClassValue } from "clsx";
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 interface Ripple {
   id: number;
@@ -23,7 +29,7 @@ interface RippleButtonProps {
 }
 
 const variantStyles: Record<NonNullable<RippleButtonProps["variant"]>, string> = {
-  primary: "bg-[var(--accent)] text-[var(--ink)] hover:bg-amber-300",
+  primary: "bg-amber-400 text-ink hover:bg-amber-300",
   secondary: "bg-[var(--primary)] text-white hover:bg-[var(--primary-dark)]",
   ghost: "border-2 border-white/40 text-white hover:border-white/80",
   coral: "bg-[var(--coral)] text-white hover:bg-coral-400",
@@ -57,7 +63,12 @@ export function RippleButton({
   }
 
   const content = label ?? children;
-  const base = `relative overflow-hidden rounded-full transition-colors duration-200 inline-flex items-center justify-center gap-2 cursor-pointer select-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  const base = cn(
+    "relative overflow-hidden rounded-full transition-colors duration-200 inline-flex items-center justify-center gap-2 cursor-pointer select-none",
+    variantStyles[variant],
+    sizeStyles[size],
+    className
+  );
 
   if (href) {
     return (

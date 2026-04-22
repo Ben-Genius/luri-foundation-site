@@ -8,7 +8,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export function HomeHero() {
   return (
-    <section className="relative flex min-h-screen max-w-[105rem] mx-auto flex-col items-center justify-center overflow-hidden bg-[var(--primary)] my-20 px-40  rounded-4xl">
+    <section className="relative flex h-[90vh] min-h-[700px] max-w-[105rem] my-24 mx-auto flex-col items-center justify-center overflow-hidden bg-[var(--primary)] my-12 px-6 md:px-20 rounded-3xl md:rounded-[3rem]">
       {/* ── Organic Blobs / Image Masks — Image 3 style ── */}
       <div className="absolute inset-0 pointer-events-none select-none">
         {/* Top Left Blob */}
@@ -81,7 +81,7 @@ export function HomeHero() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <RippleButton href="/get-involved/donate" variant="secondary" size="lg" className="rounded-full px-10 shadow-xl shadow-black/10">
+            <RippleButton href="/get-involved/donate" variant="primary" size="lg" className="rounded-lg text-white px-10 shadow-xl shadow-black/10">
               Create a free profile
             </RippleButton>
           </div>

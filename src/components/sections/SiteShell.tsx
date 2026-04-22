@@ -35,16 +35,8 @@ const footerLinks = [
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSub, setOpenSub] = useState<string | null>(null);
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -55,78 +47,51 @@ export function SiteShell({ children }: { children: ReactNode }) {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  const transparent = isHome && !scrolled;
-
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex  min-h-screen flex-col">
       {/* ── Header ── */}
       <motion.header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "border-b border-[var(--primary)]/10 bg-[var(--background)]/95 shadow-sm backdrop-blur-md"
-            : isHome
-            ? "bg-transparent"
-            : "bg-[var(--background)]/95 backdrop-blur-md border-b border-[var(--primary)]/10"
-        }`}
+        className="fixed inset-x-0 top-0 z-50 border-[var(--primary)]/5 bg-[var(--background)]/90 backdrop-blur-md"
         initial={false}
       >
+        {/* Top accent bar */}
+        <div className="h-1.5 w-full bg-[var(--primary)]" />
         <div className="container-luri flex h-16 items-center justify-between md:h-18">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white p-1">
-              <img src="/images/logo.png" alt="LURI Logo" className="h-full w-full object-contain" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span
-                className="text-lg font-bold tracking-tight text-[var(--primary)]"
-                style={{ fontFamily: "var(--font-display), system-ui, sans-serif" }}
-              >
-                LURI Foundation
-              </span>
-              <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[var(--primary)]/50">
-                People · Partnership · Purpose
-              </span>
-            </div>
+          <Link href="/" className="flex items-center gap-2 group">
+            <img src="/images/logo.png" alt="LURI Logo" className="h-16 w-auto object-contain" />
           </Link>
 
 
-          {/* Right CTAs - Hamburger only for minimal look */}
-          <div className="flex items-center gap-6">
-            <div className="hidden md:block">
-              <RippleButton href="/get-involved/donate" variant="secondary" size="sm" className="rounded-full px-6">
-                Donate
-              </RippleButton>
-            </div>
-
-            {/* Hamburger - Raygan style */}
+          {/* Right side - Hamburger only */}
+          <div className="flex items-center">
             <button
               onClick={() => setMenuOpen((v) => !v)}
               aria-label="Toggle menu"
-              className="group flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-full transition-all hover:bg-[var(--primary)]/5"
+              className="group flex h-10 w-10 flex-col items-center justify-center gap-1.5 transition-all"
             >
-              <div className="relative h-5 w-6">
+              <div className="relative h-4 w-6">
                 <motion.span
-                  animate={{ 
-                    rotate: menuOpen ? 45 : 0, 
-                    y: menuOpen ? 9 : 0,
-                    width: menuOpen ? "100%" : "100%" 
+                  animate={{
+                    rotate: menuOpen ? 45 : 0,
+                    y: menuOpen ? 7 : 0,
                   }}
-                  className="absolute top-0 left-0 block h-[2px] bg-[var(--primary)] rounded-full"
+                  className="absolute top-0 left-0 block h-[1.5px] w-full bg-[var(--primary)] rounded-full"
                 />
                 <motion.span
-                  animate={{ 
+                  animate={{
                     opacity: menuOpen ? 0 : 1,
-                    scaleX: menuOpen ? 0 : 1 
+                    scaleX: menuOpen ? 0 : 1
                   }}
-                  className="absolute top-1/2 left-0 block h-[2px] w-full bg-[var(--primary)] rounded-full -translate-y-1/2"
+                  className="absolute top-1/2 left-0 block h-[1.5px] w-full bg-[var(--primary)] rounded-full -translate-y-1/2"
                 />
                 <motion.span
-                  animate={{ 
-                    rotate: menuOpen ? -45 : 0, 
-                    y: menuOpen ? -9 : 0,
-                    width: menuOpen ? "100%" : "60%" 
+                  animate={{
+                    rotate: menuOpen ? -45 : 0,
+                    y: menuOpen ? -7 : 0,
+                    width: menuOpen ? "100%" : "65%"
                   }}
-                  className="absolute bottom-0 left-0 block h-[2px] bg-[var(--primary)] rounded-full"
+                  className="absolute bottom-0 right-0 block h-[1.5px] bg-[var(--primary)] rounded-full"
                 />
               </div>
             </button>
@@ -147,10 +112,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
             {/* Overlay Header */}
             <div className="container-luri flex h-16 items-center justify-between md:h-18">
               <Link href="/" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
-                <img src="/images/logo.png" alt="Logo" className="h-10 w-10" />
-                <span className="text-lg font-bold text-[var(--primary)]">LURI Foundation</span>
+                <img src="/images/logo.png" alt="Logo" className="h-16 w-auto object-contain" />
               </Link>
-              <button 
+              <button
                 onClick={() => setMenuOpen(false)}
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--primary)]/10 text-[var(--primary)]"
               >
