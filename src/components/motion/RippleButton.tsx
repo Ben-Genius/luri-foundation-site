@@ -1,0 +1,106 @@
+"use client";
+
+import { useState, type MouseEvent, type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+
+interface Ripple {
+  id: number;
+  x: number;
+  y: number;
+}
+
+interface RippleButtonProps {
+  label?: string;
+  children?: ReactNode;
+  href?: string;
+  onClick?: () => void;
+  variant?: "primary" | "secondary" | "ghost" | "coral";
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  type?: "button" | "submit";
+  disabled?: boolean;
+}
+
+const variantStyles: Record<NonNullable<RippleButtonProps["variant"]>, string> = {
+  primary: "bg-[var(--accent)] text-[var(--ink)] hover:bg-amber-300",
+  secondary: "bg-[var(--primary)] text-white hover:bg-[var(--primary-dark)]",
+  ghost: "border-2 border-white/40 text-white hover:border-white/80",
+  coral: "bg-[var(--coral)] text-white hover:bg-coral-400",
+};
+
+const sizeStyles: Record<NonNullable<RippleButtonProps["size"]>, string> = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-sm font-semibold",
+  lg: "px-8 py-4 text-base font-semibold",
+};
+
+export function RippleButton({
+  label,
+  children,
+  href,
+  onClick,
+  variant = "primary",
+  size = "md",
+  className = "",
+  type = "button",
+  disabled = false,
+}: RippleButtonProps) {
+  const [ripples, setRipples] = useState<Ripple[]>([]);
+
+  function addRipple(e: MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setRipples((r) => [
+      ...r,
+      { id: Date.now(), x: e.clientX - rect.left, y: e.clientY - rect.top },
+    ]);
+  }
+
+  const content = label ?? children;
+  const base = `relative overflow-hidden rounded-full transition-colors duration-200 inline-flex items-center justify-center gap-2 cursor-pointer select-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+
+  if (href) {
+    return (
+      <Link href={href} className={base} onClick={addRipple}>
+        <RippleLayer ripples={ripples} onDone={(id) => setRipples((r) => r.filter((r) => r.id !== id))} />
+        <span className="relative z-10">{content}</span>
+      </Link>
+    );
+  }
+
+  return (
+    <motion.button
+      type={type}
+      disabled={disabled}
+      whileHover={{ scale: disabled ? 1 : 1.03 }}
+      whileTap={{ scale: disabled ? 1 : 0.97 }}
+      className={base}
+      onClick={(e) => {
+        addRipple(e);
+        onClick?.();
+      }}
+    >
+      <RippleLayer ripples={ripples} onDone={(id) => setRipples((r) => r.filter((r) => r.id !== id))} />
+      <span className="relative z-10">{content}</span>
+    </motion.button>
+  );
+}
+
+function RippleLayer({ ripples, onDone }: { ripples: Ripple[]; onDone: (id: number) => void }) {
+  return (
+    <AnimatePresence>
+      {ripples.map((r) => (
+        <motion.span
+          key={r.id}
+          initial={{ scale: 0, opacity: 0.35, x: r.x, y: r.y }}
+          animate={{ scale: 18, opacity: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.65, ease: "easeOut" }}
+          onAnimationComplete={() => onDone(r.id)}
+          className="absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white pointer-events-none"
+          style={{ left: 0, top: 0, x: r.x - 10, y: r.y - 10 }}
+        />
+      ))}
+    </AnimatePresence>
+  );
+}
