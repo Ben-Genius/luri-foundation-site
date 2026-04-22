@@ -1,6 +1,14 @@
 "use client";
 
-import { Tree, TreeNode } from "react-organizational-chart";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Tree = dynamic(() => import("react-organizational-chart").then((mod) => mod.Tree), {
+  ssr: false,
+});
+const TreeNode = dynamic(() => import("react-organizational-chart").then((mod) => mod.TreeNode), {
+  ssr: false,
+});
 
 function Node({
   label,
@@ -43,6 +51,20 @@ function Node({
 }
 
 export function OrgChart() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="w-full h-40 flex items-center justify-center text-white/20 text-xs uppercase tracking-widest">
+        Loading structure...
+      </div>
+    );
+  }
+
   return (
     <div className="w-full overflow-x-auto pb-2 mb-14">
       <Tree
