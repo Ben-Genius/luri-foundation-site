@@ -15,7 +15,7 @@ export const pillars = [
     href: "/programmes/healthcare",
     color: "#0a5c60",
     iconKey: "heart",
-    image: "/images/pillar-healthcare.png",
+    image: "/images/pillar-healthcare.jpg",
   },
   {
     label: "Agribusiness & Rural Economic Diversification",
@@ -24,7 +24,7 @@ export const pillars = [
     href: "/programmes/agribusiness",
     color: "#f0b033",
     iconKey: "leaf",
-    image: "/images/pillar-agribusiness.png",
+    image: "/images/pillar-agribusiness.jpg",
   },
   {
     label: "STEM Education Scholarships",

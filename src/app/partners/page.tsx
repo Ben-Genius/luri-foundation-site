@@ -69,7 +69,7 @@ export default function PartnersPage() {
     <>
       {/* ══ HERO ══ */}
       <section className="pt-28 sm:pt-36 pb-16 overflow-hidden" style={{ backgroundColor: "#020d08" }}>
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-16">
             <div>
               <Reveal>
@@ -100,7 +100,7 @@ export default function PartnersPage() {
             {currentPartners.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.06}>
                 <div
-                  className="rounded-xl px-4 py-4 flex flex-col gap-1"
+                  className="rounded-lg px-4 py-4 flex flex-col gap-1"
                   style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
                 >
                   <p className="text-white font-semibold text-xs leading-snug">{p.name}</p>
@@ -114,7 +114,7 @@ export default function PartnersPage() {
 
       {/* ══ PROJECT CURE SPOTLIGHT ══ */}
       <section className="section-pad bg-white">
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left — content */}
             <div>
@@ -130,7 +130,7 @@ export default function PartnersPage() {
               <SplitHeading
                 as="h2"
                 text="Project C.U.R.E."
-                highlightWords={["C.U.R.E."]}
+                highlightWords={["Project"]}
                 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[var(--ink)] tracking-tight mb-6"
               />
               <Reveal delay={0.15}>
@@ -148,7 +148,7 @@ export default function PartnersPage() {
                 </p>
               </Reveal>
               <Reveal delay={0.25}>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 text-white">
                   <a
                     href="https://www.projectcure.org"
                     target="_blank"
@@ -157,7 +157,7 @@ export default function PartnersPage() {
                   >
                     Visit Project C.U.R.E. <ArrowUpRight className="h-4 w-4" />
                   </a>
-                  <RippleButton href="/get-involved" variant="ghost" size="md" textColor="var(--ink)">
+                  <RippleButton href="/get-involved" variant="primary" size="md" textColor="white">
                     Partner with us
                   </RippleButton>
                 </div>
@@ -167,12 +167,17 @@ export default function PartnersPage() {
             {/* Right — feature card */}
             <Reveal direction="right" delay={0.1}>
               <div
-                className="rounded-2xl p-8 sm:p-10 h-full"
+                className="rounded-lg p-8 sm:p-10 h-full"
                 style={{ backgroundColor: "#f5f5f4", border: "1px solid rgba(0,0,0,0.06)" }}
               >
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--primary)] text-white flex-shrink-0">
-                    <ShieldCheck className="h-8 w-8" />
+                  <div className="relative h-16 w-16 overflow-hidden rounded-lg bg-white flex-shrink-0 border border-black/5">
+                    <Image
+                      src="/images/partners/project-cure-logo.jpg"
+                      alt="Project C.U.R.E. Logo"
+                      fill
+                      className="object-contain p-1"
+                    />
                   </div>
                   <div>
                     <p className="font-extrabold text-[var(--ink)] text-xl tracking-tight">Project C.U.R.E.</p>
@@ -197,7 +202,7 @@ export default function PartnersPage() {
                   ].map((stat) => (
                     <div
                       key={stat.label}
-                      className="rounded-xl p-4"
+                      className="rounded-lg p-4"
                       style={{ backgroundColor: "rgba(0,80,53,0.06)", border: "1px solid rgba(0,80,53,0.08)" }}
                     >
                       <p className="font-extrabold text-[var(--primary)] text-xl">{stat.val}</p>
@@ -223,7 +228,7 @@ export default function PartnersPage() {
       {/* ══ PARTNERSHIP TYPES ══ */}
       <ScrollThemeSection theme="#005035">
         <section className="section-pad text-white" style={{ backgroundColor: "#005035" }}>
-          <div className="max-w-[95%] mx-auto">
+          <div className="max-w-[80%] mx-auto">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-14">
               <div>
                 <Reveal>
@@ -255,7 +260,7 @@ export default function PartnersPage() {
                 return (
                   <Reveal key={type.title} delay={i * 0.08}>
                     <div
-                      className="rounded-2xl p-7 h-full flex flex-col gap-5 group cursor-default transition-all duration-200 hover:border-opacity-30"
+                      className="rounded-lg p-7 h-full flex flex-col gap-5 group cursor-default transition-all duration-200 hover:border-opacity-30"
                       style={{
                         backgroundColor: "rgba(255,255,255,0.05)",
                         border: "1px solid rgba(255,255,255,0.08)",
@@ -263,7 +268,7 @@ export default function PartnersPage() {
                     >
                       <div className="flex items-center gap-4">
                         <div
-                          className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                          className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0"
                           style={{ backgroundColor: `rgba(${type.accentRgb},0.2)`, color: type.accent }}
                         >
                           <Icon className="h-5 w-5" />
@@ -290,7 +295,7 @@ export default function PartnersPage() {
 
       {/* ══ MOU GOVERNANCE ══ */}
       <section className="section-pad bg-white">
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <div>
               <Reveal>
@@ -330,7 +335,7 @@ export default function PartnersPage() {
             {/* Visual card */}
             <Reveal direction="right" delay={0.1}>
               <div
-                className="rounded-2xl p-8 sm:p-10"
+                className="rounded-lg p-8 sm:p-10"
                 style={{ backgroundColor: "var(--primary-dark)", color: "white" }}
               >
                 <div className="w-6 h-6 rounded-t-full bg-[var(--accent)] mb-6" />

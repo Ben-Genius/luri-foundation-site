@@ -109,7 +109,7 @@ export default function AboutPage() {
           1. HERO — image grid (About3 style, homepage polish)
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="pt-28 sm:pt-36 pb-16 bg-white">
-        <div className="max-w-[90%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
 
           {/* Header */}
           <div className="mb-10 sm:mb-14 grid gap-6 md:grid-cols-2 md:items-end">
@@ -141,7 +141,7 @@ export default function AboutPage() {
           {/* Image grid */}
           <div className="grid gap-4 sm:gap-5 lg:grid-cols-3">
             <Reveal direction="up" delay={0.05} className="lg:col-span-2">
-              <div className="relative h-[340px] sm:h-[460px] lg:h-[540px] rounded-2xl overflow-hidden group">
+              <div className="relative h-[340px] sm:h-[460px] lg:h-[540px] rounded-lg overflow-hidden group">
                 <Image
                   src="/images/hero-luri.png"
                   alt="LURI Foundation community programme"
@@ -164,7 +164,7 @@ export default function AboutPage() {
               {/* Breakout card */}
               <Reveal direction="up" delay={0.12}>
                 <div
-                  className="rounded-2xl p-7 flex flex-col gap-5 h-fit"
+                  className="rounded-lg p-7 flex flex-col gap-5 h-fit"
                   style={{
                     backgroundColor: "rgba(0,80,53,0.05)",
                     border: "1px solid rgba(0,80,53,0.12)",
@@ -194,7 +194,7 @@ export default function AboutPage() {
 
               {/* Secondary image */}
               <Reveal direction="up" delay={0.18} className="grow min-h-[180px]">
-                <div className="relative h-full min-h-[200px] rounded-2xl overflow-hidden group">
+                <div className="relative h-full min-h-[200px] rounded-lg overflow-hidden group">
                   <Image
                     src="/images/luri/operations.png"
                     alt="LURI field operations"
@@ -220,10 +220,10 @@ export default function AboutPage() {
           2. ACHIEVEMENT NUMBERS — dark card with real stats
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 bg-[#faf9f6]">
-        <div className="max-w-[90%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
           <Reveal>
             <div
-              className="rounded-2xl p-10 md:p-16 relative overflow-hidden"
+              className="rounded-lg p-10 md:p-16 relative overflow-hidden"
               style={{ backgroundColor: "var(--primary-dark)" }}
             >
               <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
@@ -270,7 +270,7 @@ export default function AboutPage() {
           3. VISION & MISSION — dark editorial split
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="section-pad" style={{ backgroundColor: "#020d08" }}>
-        <div className="max-w-[90%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 sm:mb-14">
             <div>
               <Reveal>
@@ -294,7 +294,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
             <Reveal direction="left" delay={0.1}>
               <div
-                className="rounded-2xl p-8 sm:p-10 flex flex-col gap-6 h-full"
+                className="rounded-lg p-8 sm:p-10 flex flex-col gap-6 h-full"
                 style={{
                   backgroundColor: "rgba(0,80,53,0.25)",
                   border: "1px solid rgba(0,80,53,0.35)",
@@ -319,7 +319,7 @@ export default function AboutPage() {
 
             <Reveal direction="right" delay={0.1}>
               <div
-                className="rounded-2xl p-8 sm:p-10 flex flex-col gap-6 h-full"
+                className="rounded-lg p-8 sm:p-10 flex flex-col gap-6 h-full"
                 style={{
                   backgroundColor: "rgba(182,144,0,0.12)",
                   border: "1px solid rgba(182,144,0,0.25)",
@@ -352,7 +352,7 @@ export default function AboutPage() {
           className="section-pad text-white overflow-hidden relative"
           style={{ backgroundColor: "#005035" }}
         >
-          <div className="max-w-[90%] mx-auto">
+          <div className="max-w-[80%] mx-auto">
             <Reveal>
               <div
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-white/70 text-[0.62rem] font-bold uppercase tracking-widest mb-5 sm:mb-6"
@@ -417,7 +417,7 @@ export default function AboutPage() {
           5. FOUNDING STORY — image masonry + editorial prose
       ══════════════════════════════════════════════════════════════════════ */}
       <section className="section-pad bg-white">
-        <div className="max-w-[90%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8 mb-12 sm:mb-16">
             <div>
               <Reveal>
@@ -571,7 +571,7 @@ export default function AboutPage() {
             {govPrinciples.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.08} className="h-full">
                 <div
-                  className="rounded-2xl p-6 sm:p-7 flex gap-5 h-full"
+                  className="rounded-lg p-6 sm:p-7 flex gap-5 h-full"
                   style={{
                     backgroundColor: "rgba(255,255,255,0.04)",
                     border: "1px solid rgba(255,255,255,0.07)",
@@ -595,7 +595,7 @@ export default function AboutPage() {
           {/* CTA */}
           <Reveal delay={0.3}>
             <div
-              className="rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6"
+              className="rounded-lg p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6"
               style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
             >
               <div>

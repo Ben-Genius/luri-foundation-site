@@ -49,7 +49,7 @@ const programmes = [
   {
     num: "03",
     icon: GraduationCap,
-    label: "STEM Education Scholarships",
+    label: "STEM Education ",
     slug: "stem",
     tagline: "Financial constraints should never extinguish scientific potential.",
     summary:
@@ -216,7 +216,7 @@ export default function ProgrammesPage() {
     <>
       {/* ══ HERO ══ */}
       <section className="pt-28 sm:pt-36 pb-16 overflow-hidden" style={{ backgroundColor: "#020d08" }}>
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[80%] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-16">
             <div>
               <Reveal>
@@ -248,7 +248,7 @@ export default function ProgrammesPage() {
 
       {/* ══ PROGRAMME CARDS ══ */}
       <section className="py-0" style={{ backgroundColor: "#0a0f0d" }}>
-        <div className="max-w-[95%] mx-auto py-4 sm:py-6 flex flex-col gap-4 sm:gap-5">
+        <div className="max-w-[80%] mx-auto py-4 sm:py-6 flex flex-col gap-4 sm:gap-5">
           {programmes.map((p, i) => (
             <Reveal key={p.slug} delay={0.05}>
               <ProgrammeCard p={p} reverse={i % 2 !== 0} />
@@ -291,7 +291,7 @@ export default function ProgrammesPage() {
       {/* ══ PRINCIPLES ══ */}
       <ScrollThemeSection theme="#003624">
         <section className="section-pad text-white" style={{ backgroundColor: "#003624" }}>
-          <div className="max-w-[90%] mx-auto">
+          <div className="max-w-[80%] mx-auto">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
               <div>
                 <Reveal>

@@ -10,16 +10,17 @@ import { NewsletterSection } from "../components/sections/NewsletterSection";
 
 export default function HomePage() {
   return (
-    <>
+    <div className="px-3">
       <HomeHero />
       <MarqueeSection />
       <PillarsSection />
-      <ImpactSection />
-      <ValuesSection />
-      <ModelSection />
       <PartnerSection />
-      <StoriesSection />
+
+      <ImpactSection />
+      {/* <ValuesSection /> */}
+      {/* <ModelSection /> */}
+      {/* <StoriesSection /> */}
       <NewsletterSection />
-    </>
+    </div>
   );
 }

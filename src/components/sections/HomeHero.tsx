@@ -70,7 +70,7 @@ export function HomeHero() {
             transition={{ duration: 1.6, ease, delay: 0.2 }}
             className="h-full w-full overflow-hidden rounded-[70%_30%_50%_50%_/_30%_30%_70%_70%]"
           >
-            <img src="/images/pillar-agribusiness.png" alt="" className="h-full w-full object-cover opacity-80" />
+            <img src="/images/pillar-agribusiness.jpg" alt="" className="h-full w-full object-cover opacity-80" />
           </motion.div>
         </GSAPParallax>
 

@@ -29,7 +29,7 @@ const pillarsDisplay = [
       "First aid, emergency response & maternal health",
     ],
     href: "/programmes/healthcare",
-    image: "/images/pillar-healthcare.png",
+    image: "/images/pillar-healthcare.jpg",
     color: "#005035",
   },
   {
@@ -49,7 +49,7 @@ const pillarsDisplay = [
       "Links to buyer networks & credit facilitation",
     ],
     href: "/programmes/agribusiness",
-    image: "/images/pillar-agribusiness.png",
+    image: "/images/pillar-agribusiness.jpg",
     color: "#7a5200",
   },
   {
