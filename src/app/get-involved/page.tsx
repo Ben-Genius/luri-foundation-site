@@ -133,11 +133,10 @@ export default function GetInvolvedPage() {
               <Reveal key={tier.label} delay={i * 0.1}>
                 <TiltCard className="h-full">
                   <div
-                    className={`relative flex h-full flex-col rounded-2xl border bg-white p-7 ${
-                      tier.featured
-                        ? "border-[var(--accent)] shadow-xl shadow-[var(--accent)]/15"
-                        : "border-[var(--primary)]/8"
-                    }`}
+                    className={`relative flex h-full flex-col rounded-2xl border bg-white p-7 ${tier.featured
+                      ? "border-[var(--accent)] shadow-xl shadow-[var(--accent)]/15"
+                      : "border-[var(--primary)]/8"
+                      }`}
                   >
                     {tier.featured && (
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 pill bg-[var(--accent)] text-[var(--ink)] text-[10px] shadow">
@@ -242,7 +241,7 @@ export default function GetInvolvedPage() {
               <RippleButton href="/get-involved/apply-training" variant="secondary" size="md">
                 Apply for training
               </RippleButton>
-              <RippleButton href="/get-involved/apply-scholarship" variant="secondary" size="md">
+              <RippleButton href="/get-involved/apply-scholarship" variant="secondary" textColor="white" size="md">
                 Apply for scholarship
               </RippleButton>
             </div>

@@ -29,7 +29,7 @@ const pillarsDisplay = [
       "First aid, emergency response & maternal health",
     ],
     href: "/programmes/healthcare",
-    image: "/images/pillar-healthcare.png",
+    image: "/images/pillar-healthcare.jpg",
     color: "#005035",
   },
   {
@@ -49,7 +49,7 @@ const pillarsDisplay = [
       "Links to buyer networks & credit facilitation",
     ],
     href: "/programmes/agribusiness",
-    image: "/images/pillar-agribusiness.png",
+    image: "/images/pillar-agribusiness.jpg",
     color: "#7a5200",
   },
   {
@@ -469,7 +469,7 @@ export function PillarsSection() {
   return (
     <ScrollThemeSection theme="#ffffff">
       {/* ── Two-column header ── */}
-      <div className="flex flex-col max-w-[90rem] mx-auto lg:flex-row lg:items-end lg:gap-16 py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="flex flex-col max-w-[90rem] mx-auto lg:flex-row lg:items-end lg:gap-16 py-4 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Left: badge + text */}
         <div className="lg:w-5/12 mb-10 lg:mb-0">
           <Reveal>

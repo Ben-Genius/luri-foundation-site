@@ -58,7 +58,7 @@ export default function StemPage() {
     <>
       {/* ══ HERO ══ */}
       <section className="pt-28 sm:pt-36 pb-0 overflow-hidden" style={{ backgroundColor: "#020d08" }}>
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[85%] mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center pb-14 sm:pb-20">
             {/* Left */}
             <div>
@@ -89,10 +89,10 @@ export default function StemPage() {
 
               <Reveal delay={0.25}>
                 <div className="flex flex-wrap gap-4">
-                  <RippleButton href="/get-involved/apply-scholarship" variant="coral" size="md">
+                  <RippleButton href="/get-involved/apply-scholarship" variant="coral" textColor="white" size="md">
                     Apply for a scholarship
                   </RippleButton>
-                  <RippleButton href="/impact" variant="ghost" size="md">
+                  <RippleButton href="/impact" variant="ghost" textColor="white" size="md">
                     See our impact data
                   </RippleButton>
                 </div>
@@ -139,7 +139,7 @@ export default function StemPage() {
 
       {/* ══ WHAT WE OFFER ══ */}
       <section className="section-pad bg-white">
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[85%] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-14">
             <div>
               <Reveal>
@@ -195,7 +195,7 @@ export default function StemPage() {
       {/* ══ ELIGIBILITY + SCALE ══ */}
       <ScrollThemeSection theme="#005035">
         <section className="section-pad text-white" style={{ backgroundColor: "#005035" }}>
-          <div className="max-w-[95%] mx-auto">
+          <div className="max-w-[85%] mx-auto">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
               {/* Eligibility */}
               <div>
@@ -274,7 +274,7 @@ export default function StemPage() {
 
       {/* ══ TESTIMONIAL ══ */}
       <section className="section-pad" style={{ backgroundColor: "#020d08" }}>
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[85%] mx-auto">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Quote */}
             <div className="lg:col-span-3">
@@ -324,7 +324,7 @@ export default function StemPage() {
 
       {/* ══ CTA ══ */}
       <section className="section-pad bg-white">
-        <div className="max-w-[95%] mx-auto">
+        <div className="max-w-[85%] mx-auto">
           <Reveal>
             <div
               className="rounded-2xl p-10 sm:p-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8"
@@ -343,10 +343,10 @@ export default function StemPage() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-                <RippleButton href="/get-involved/apply-scholarship" variant="coral" size="lg">
+                <RippleButton href="/get-involved/apply-scholarship" variant="coral" textColor="white" size="lg">
                   Apply now
                 </RippleButton>
-                <RippleButton href="/get-involved/donate" variant="secondary" size="lg">
+                <RippleButton href="/get-involved/donate" variant="secondary" textColor="white" size="lg">
                   Fund a scholarship
                 </RippleButton>
               </div>
