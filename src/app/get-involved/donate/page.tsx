@@ -15,8 +15,8 @@ export const metadata = {
 
 const stats = [
   { to: 150, suffix: "+", label: "Individuals Trained", sub: "Year-one target" },
-  { to: 60,  suffix: "%", label: "Female Beneficiaries", sub: "Of all participants" },
-  { to: 15,  suffix: "+", label: "Businesses Launched", sub: "By programme graduates" },
+  { to: 60, suffix: "%", label: "Female Beneficiaries", sub: "Of all participants" },
+  { to: 15, suffix: "+", label: "Businesses Launched", sub: "By programme graduates" },
 ];
 
 const tiers = [
@@ -144,87 +144,82 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* ══ 3. TIER ROWS ═══════════════════════════════════════════════════════ */}
-      <section className="bg-white py-28 sm:py-36">
-        <div className="max-w-4xl mx-auto px-6">
-          <Reveal>
-            <div className="flex items-center gap-4 mb-20">
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[var(--ink-400)]">
-                Your gift becomes
-              </p>
-              <div className="flex-1 h-px bg-[#e5e5e7]" />
-            </div>
-          </Reveal>
+      {/* ══ 3 + 4. TIERS + FORM ══════════════════════════════════════════════ */}
+      <section
+        className="py-16 sm:py-24"
+        style={{ background: "#f5f5f7", borderTop: "1px solid #e5e5e7" }}
+      >
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
 
-          <div className="divide-y divide-[#e5e5e7]">
-            {tiers.map((tier, i) => (
-              <Reveal key={tier.amount} delay={i * 0.12}>
-                <div className="grid sm:grid-cols-[1fr_2fr] gap-6 sm:gap-16 py-12 sm:py-16 group">
-                  {/* Left — amount */}
-                  <div className="flex flex-col gap-3">
-                    <span
-                      className="font-extrabold tracking-[-0.04em] leading-none transition-colors duration-300"
-                      style={{
-                        fontSize: "clamp(2rem,5vw,3.5rem)",
-                        color: tier.featured ? "var(--primary)" : "var(--ink)",
-                      }}
-                    >
-                      {tier.amount}
-                    </span>
-                    <span
-                      className="inline-block self-start text-[0.58rem] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
+            {/* ── Tiers: compact stacked cards ── */}
+            <div className="w-full lg:w-[260px] flex-shrink-0">
+              <Reveal>
+                <p className="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[var(--ink-400)] mb-5">
+                  Your gift becomes
+                </p>
+              </Reveal>
+              <div className="flex flex-row lg:flex-col gap-3">
+                {tiers.map((tier, i) => (
+                  <Reveal key={tier.amount} delay={i * 0.08}>
+                    <div
+                      className="flex-1 lg:flex-none flex flex-col gap-1.5 p-4 rounded-xl"
                       style={
                         tier.featured
-                          ? { background: "rgba(0,80,53,0.1)", color: "var(--primary)" }
-                          : { background: "#f5f5f7", color: "#6e6e73" }
+                          ? { background: "rgba(0,80,53,0.06)", border: "1px solid rgba(0,80,53,0.18)" }
+                          : { background: "#fff", border: "1px solid #e5e5e7" }
                       }
                     >
-                      {tier.tag}
-                    </span>
-                  </div>
+                      <span
+                        className="font-extrabold tracking-[-0.035em] leading-none text-sm sm:text-base"
+                        style={{ color: tier.featured ? "var(--primary)" : "var(--ink)" }}
+                      >
+                        {tier.amount}
+                      </span>
+                      <span className="text-[0.65rem] text-[var(--ink-600)] leading-snug">
+                        {tier.headline}
+                      </span>
+                      <span
+                        className="self-start text-[0.5rem] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full mt-0.5"
+                        style={
+                          tier.featured
+                            ? { background: "var(--primary)", color: "#fff" }
+                            : { background: "#e5e5e7", color: "#6e6e73" }
+                        }
+                      >
+                        {tier.tag}
+                      </span>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
 
-                  {/* Right — description */}
-                  <div className="flex flex-col justify-center gap-3">
-                    <h3 className="text-2xl sm:text-3xl font-bold tracking-[-0.025em] text-[var(--ink)] leading-tight">
-                      {tier.headline}
-                    </h3>
-                    <p className="text-[var(--ink-600)] text-sm sm:text-base leading-relaxed max-w-prose">
-                      {tier.body}
-                    </p>
-                  </div>
+            {/* ── Form: dominant ── */}
+            <div className="flex-1 min-w-0">
+              <Reveal delay={0.05}>
+                <div className="mb-8">
+                  <h2 className="text-3xl sm:text-4xl font-extrabold tracking-[-0.04em] text-[var(--ink)] mb-2">
+                    Initiate your gift.
+                  </h2>
+                  <p className="text-sm text-[var(--ink-600)]">
+                    100% of non-administrative funds go directly to the field.
+                  </p>
                 </div>
               </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ══ 4. FORM ════════════════════════════════════════════════════════════ */}
-      <section
-        style={{ background: "#f5f5f7", borderTop: "1px solid #e5e5e7" }}
-        className="py-28 sm:py-36"
-      >
-        <div className="max-w-[540px] mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-[-0.035em] text-[var(--ink)] mb-4">
-                Initiate your gift.
-              </h2>
-              <p className="text-[var(--ink-600)] text-sm sm:text-base leading-relaxed">
-                100% of non-administrative funds go directly to the field.
-              </p>
+              <Reveal delay={0.1}>
+                <SimpleForm formType="donate" />
+              </Reveal>
+
+              <Reveal delay={0.2}>
+                <p className="mt-6 text-[0.65rem] text-[var(--ink-400)]">
+                  Secure payment · Verified international gateways
+                </p>
+              </Reveal>
             </div>
-          </Reveal>
 
-          <Reveal delay={0.1}>
-            <SimpleForm formType="donate" />
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <p className="mt-7 text-center text-[0.68rem] text-[var(--ink-400)] leading-relaxed">
-              Secure payment processed via verified international gateways.
-            </p>
-          </Reveal>
+          </div>
         </div>
       </section>
 

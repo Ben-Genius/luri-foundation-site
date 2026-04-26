@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <div className="px-3">
       <HomeHero />
-      <MarqueeSection />
+      {/* <MarqueeSection /> */}
       <PillarsSection />
       <PartnerSection />
 
